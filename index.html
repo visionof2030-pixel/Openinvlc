@@ -296,13 +296,13 @@
             justify-content: center;
             gap: 10px;
             width: 100%;
-            padding: 14px 20px;
+            padding: 12px 18px;
             margin-top: 4px;
             border: none;
             border-radius: 60px;
             background: var(--gold-gradient);
             color: #0a0e1a;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 800;
             cursor: pointer;
             transition: var(--transition);
@@ -322,11 +322,11 @@
         }
 
         .download-now-btn .btn-icon {
-            font-size: 22px;
+            font-size: 20px;
         }
 
         .download-now-btn .btn-arrow {
-            font-size: 18px;
+            font-size: 16px;
             transition: var(--transition);
         }
 
@@ -352,6 +352,32 @@
 
         .download-now-btn.ios-btn:hover {
             box-shadow: 0 8px 40px rgba(0, 122, 255, 0.35);
+        }
+
+        .download-now-btn.mx-btn {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(231, 76, 60, 0.25);
+        }
+
+        .download-now-btn.mx-btn:hover {
+            box-shadow: 0 8px 40px rgba(231, 76, 60, 0.35);
+        }
+
+        .download-buttons-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .download-buttons-row .download-now-btn {
+            flex: 1;
+            padding: 10px 14px;
+            font-size: 12px;
+        }
+
+        .download-buttons-row .download-now-btn .btn-icon {
+            font-size: 18px;
         }
 
         /* ===== IOS MESSAGE SECTION - ARABIC SUPPORT ===== */
@@ -586,6 +612,7 @@
             justify-content: space-between;
             min-height: 76px;
             cursor: pointer;
+            position: relative;
         }
 
         .channel-item:active {
@@ -597,6 +624,13 @@
             border-color: var(--border-gold);
             transform: translateY(-2px);
             box-shadow: var(--shadow-card), 0 8px 30px rgba(212, 167, 69, 0.04);
+        }
+
+        .channel-item .channel-click-area {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
         }
 
         .channel-left {
@@ -638,6 +672,151 @@
         .channel-right .flag {
             font-size: 22px;
             opacity: 0.8;
+        }
+
+        /* ===== PLAYER CHOICE OVERLAY ===== */
+        .player-choice-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.80);
+            backdrop-filter: blur(16px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInOverlay 0.3s ease;
+        }
+
+        .player-choice-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeInOverlay {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .player-choice-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            max-width: 380px;
+            width: 95%;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.60);
+            text-align: center;
+        }
+
+        .player-choice-box .choice-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--gold-light);
+            margin-bottom: 6px;
+        }
+
+        .player-choice-box .choice-sub {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .player-choice-box .choice-channel {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 18px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .player-choice-box .choice-channel .channel-icon-small {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            object-fit: cover;
+            vertical-align: middle;
+            margin-left: 8px;
+        }
+
+        .player-choice-box .choice-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .player-choice-box .choice-buttons .choice-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 60px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            text-decoration: none;
+            color: #fff;
+            width: 100%;
+        }
+
+        .player-choice-box .choice-buttons .choice-btn:active {
+            transform: scale(0.97);
+        }
+
+        .player-choice-box .choice-buttons .choice-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .player-choice-box .choice-buttons .choice-btn .btn-icon-img {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .choice-btn-vlc {
+            background: linear-gradient(145deg, #ff8800, #e67600);
+            box-shadow: 0 4px 20px rgba(255, 136, 0, 0.25);
+        }
+
+        .choice-btn-vlc:hover {
+            box-shadow: 0 8px 32px rgba(255, 136, 0, 0.35);
+        }
+
+        .choice-btn-mx {
+            background: linear-gradient(145deg, #e74c3c, #c0392b);
+            box-shadow: 0 4px 20px rgba(231, 76, 60, 0.25);
+        }
+
+        .choice-btn-mx:hover {
+            box-shadow: 0 8px 32px rgba(231, 76, 60, 0.35);
+        }
+
+        .choice-btn-ios {
+            background: linear-gradient(145deg, #ff6b6b, #ee5a24);
+            box-shadow: 0 4px 20px rgba(238, 90, 36, 0.25);
+        }
+
+        .choice-btn-ios:hover {
+            box-shadow: 0 8px 32px rgba(238, 90, 36, 0.35);
+        }
+
+        .choice-btn-cancel {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+        }
+
+        .choice-btn-cancel:hover {
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .divider {
@@ -765,8 +944,18 @@
             .ios-screenshot-wrapper {
                 padding: 6px;
             }
+            .download-buttons-row {
+                flex-direction: column;
+            }
             .download-now-btn {
-                font-size: 14px;
+                font-size: 12px;
+                padding: 10px 14px;
+            }
+            .player-choice-box {
+                padding: 20px 16px;
+            }
+            .player-choice-box .choice-buttons .choice-btn {
+                font-size: 13px;
                 padding: 12px 16px;
             }
         }
@@ -792,11 +981,9 @@
                 <!-- سيتم تعبئتها بواسطة JavaScript حسب الجهاز -->
             </div>
 
-            <a href="#" id="downloadNowBtn" class="download-now-btn" target="_blank">
-                <span class="btn-icon">⬇️</span>
-                تنزيل المشغل الآن
-                <span class="btn-arrow">→</span>
-            </a>
+            <div class="download-buttons-row" id="downloadButtonsRow">
+                <!-- سيتم تعبئتها بواسطة JavaScript حسب الجهاز -->
+            </div>
         </div>
 
         <!-- ===== زر عرض المشكلة + رسالة iPhone ===== -->
@@ -813,23 +1000,18 @@
                     خطوات عمل المشغل للآيفون
                 </div>
                 <div class="msg-content">
-                    <!-- الخطوة 1 -->
                     <div class="step">
                         <span class="num">١</span>
                         <span class="step-text">
                             بعد الضغط على زر <span class="highlight-btn">VLC</span>، ستظهر لك رسالة مثل الصورة أدناه.
                         </span>
                     </div>
-
-                    <!-- الخطوة 2 -->
                     <div class="step">
                         <span class="num">٢</span>
                         <span class="step-text">
                             اضغط على <span class="highlight">"Play"</span> لتشغيل البث مباشرة.
                         </span>
                     </div>
-
-                    <!-- الخطوة 3 -->
                     <div class="step">
                         <span class="num">٣</span>
                         <span class="step-text">
@@ -882,6 +1064,21 @@
             💡 اختر التطبيق المناسب لجهازك
         </p>
         <div class="footer" id="footerTrigger">⚡ IPTV | يعمل على iPhone و Android</div>
+    </div>
+
+    <!-- ===== PLAYER CHOICE OVERLAY ===== -->
+    <div class="player-choice-overlay" id="playerChoiceOverlay">
+        <div class="player-choice-box">
+            <div class="choice-title">🎬 اختر المشغل</div>
+            <div class="choice-sub">اختر التطبيق الذي تريد تشغيل القناة عليه</div>
+            <div class="choice-channel" id="choiceChannelDisplay">
+                <!-- سيتم تعبئته بواسطة JavaScript -->
+            </div>
+            <div class="choice-buttons" id="choiceButtons">
+                <!-- سيتم تعبئته بواسطة JavaScript حسب الجهاز -->
+            </div>
+            <button class="choice-btn choice-btn-cancel" onclick="closePlayerChoice()">✕ إلغاء</button>
+        </div>
     </div>
 
     <div id="toast" class="toast">✅ جاري الفتح...</div>
@@ -964,10 +1161,13 @@
 
         const device = getDeviceType();
 
+        // ===== متغير لتخزين القناة المختارة =====
+        let selectedChannel = null;
+
         // ===== عرض روابط التطبيقات حسب الجهاز =====
         function renderAppLinks() {
             const container = document.getElementById('appLinksContainer');
-            const downloadBtn = document.getElementById('downloadNowBtn');
+            const buttonsRow = document.getElementById('downloadButtonsRow');
 
             if (device === 'ios') {
                 container.innerHTML = `
@@ -985,12 +1185,12 @@
                     </div>
                 `;
 
-                downloadBtn.href = APP_LINKS.vlc.ios;
-                downloadBtn.className = 'download-now-btn ios-btn';
-                downloadBtn.innerHTML = `
-                    <span class="btn-icon">⬇️</span>
-                    تنزيل المشغل الآن (VLC)
-                    <span class="btn-arrow">→</span>
+                buttonsRow.innerHTML = `
+                    <a href="${APP_LINKS.vlc.ios}" target="_blank" class="download-now-btn ios-btn">
+                        <span class="btn-icon">⬇️</span>
+                        تنزيل VLC
+                        <span class="btn-arrow">→</span>
+                    </a>
                 `;
 
                 document.getElementById('iosMessageSection').classList.remove('visible');
@@ -1024,12 +1224,17 @@
                     </div>
                 `;
 
-                downloadBtn.href = APP_LINKS.vlc.android;
-                downloadBtn.className = 'download-now-btn android-btn';
-                downloadBtn.innerHTML = `
-                    <span class="btn-icon">⬇️</span>
-                    تنزيل المشغل الآن (VLC)
-                    <span class="btn-arrow">→</span>
+                buttonsRow.innerHTML = `
+                    <a href="${APP_LINKS.vlc.android}" target="_blank" class="download-now-btn android-btn">
+                        <span class="btn-icon">⬇️</span>
+                        تنزيل VLC
+                        <span class="btn-arrow">→</span>
+                    </a>
+                    <a href="${APP_LINKS.mx.android}" target="_blank" class="download-now-btn mx-btn">
+                        <span class="btn-icon">⬇️</span>
+                        تنزيل MX
+                        <span class="btn-arrow">→</span>
+                    </a>
                 `;
 
                 document.getElementById('showIssueBtn').classList.remove('visible');
@@ -1051,12 +1256,12 @@
                     </div>
                 `;
 
-                downloadBtn.href = APP_LINKS.vlc.android;
-                downloadBtn.className = 'download-now-btn';
-                downloadBtn.innerHTML = `
-                    <span class="btn-icon">⬇️</span>
-                    تنزيل المشغل الآن
-                    <span class="btn-arrow">→</span>
+                buttonsRow.innerHTML = `
+                    <a href="${APP_LINKS.vlc.android}" target="_blank" class="download-now-btn">
+                        <span class="btn-icon">⬇️</span>
+                        تنزيل المشغل
+                        <span class="btn-arrow">→</span>
+                    </a>
                 `;
 
                 document.getElementById('showIssueBtn').classList.remove('visible');
@@ -1087,6 +1292,93 @@
             }
         }
 
+        // ===== فتح نافذة اختيار المشغل =====
+        function openPlayerChoice(channel) {
+            selectedChannel = channel;
+            const overlay = document.getElementById('playerChoiceOverlay');
+            const display = document.getElementById('choiceChannelDisplay');
+            const buttons = document.getElementById('choiceButtons');
+
+            const iconUrl = CHANNEL_ICONS[channel.name] || '';
+
+            display.innerHTML = `
+                ${iconUrl ? `<img src="${iconUrl}" alt="${channel.name}" class="channel-icon-small" />` : ''}
+                ${channel.flag} ${channel.name}
+            `;
+
+            if (device === 'ios') {
+                buttons.innerHTML = `
+                    <button class="choice-btn choice-btn-ios" onclick="playChannel('vlc')">
+                        <img src="${APP_ICONS.vlc}" alt="VLC" class="btn-icon-img" />
+                        تشغيل على VLC (iPhone)
+                    </button>
+                `;
+            } else if (device === 'android') {
+                buttons.innerHTML = `
+                    <button class="choice-btn choice-btn-vlc" onclick="playChannel('vlc')">
+                        <img src="${APP_ICONS.vlc}" alt="VLC" class="btn-icon-img" />
+                        تشغيل على VLC
+                    </button>
+                    <button class="choice-btn choice-btn-mx" onclick="playChannel('mx')">
+                        <img src="${APP_ICONS.mx}" alt="MX" class="btn-icon-img" />
+                        تشغيل على MX Player
+                    </button>
+                `;
+            } else {
+                buttons.innerHTML = `
+                    <button class="choice-btn choice-btn-vlc" onclick="playChannel('vlc')">
+                        <img src="${APP_ICONS.vlc}" alt="VLC" class="btn-icon-img" />
+                        تشغيل على VLC
+                    </button>
+                `;
+            }
+
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // ===== تشغيل القناة على المشغل المختار =====
+        function playChannel(player) {
+            if (!selectedChannel) return;
+
+            const url = selectedChannel.url;
+
+            if (device === 'ios') {
+                // iPhone - فقط VLC متاح
+                window.location.href = `vlc://${url}`;
+                showToast('📲 جاري فتح VLC... اضغط "Play" أو "Always Play URLs" عند ظهور الرسالة');
+            } else if (device === 'android') {
+                if (player === 'vlc') {
+                    const intentUrl = `intent://${url.replace('http://', '').replace('https://', '')}#Intent;scheme=${url.startsWith('https') ? 'https' : 'http'};package=org.videolan.vlc;type=video/*;end`;
+                    window.location.href = intentUrl;
+                    setTimeout(() => {
+                        window.open(APP_LINKS.vlc.android, '_blank');
+                    }, 3000);
+                    showToast('📲 جاري فتح VLC...');
+                } else if (player === 'mx') {
+                    const intentUrl = `intent://${url.replace('http://', '').replace('https://', '')}#Intent;scheme=${url.startsWith('https') ? 'https' : 'http'};package=com.mxtech.videoplayer.ad;type=video/*;end`;
+                    window.location.href = intentUrl;
+                    setTimeout(() => {
+                        window.open(APP_LINKS.mx.android, '_blank');
+                    }, 3000);
+                    showToast('📲 جاري فتح MX Player...');
+                }
+            } else {
+                window.open(url, '_blank');
+                showToast('📲 جاري فتح الرابط...');
+            }
+
+            closePlayerChoice();
+        }
+
+        // ===== إغلاق نافذة اختيار المشغل =====
+        function closePlayerChoice() {
+            const overlay = document.getElementById('playerChoiceOverlay');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+            selectedChannel = null;
+        }
+
         // ===== إنشاء عناصر القنوات =====
         function renderChannels() {
             const channelList = document.getElementById('channelList');
@@ -1099,31 +1391,19 @@
                 const iconUrl = CHANNEL_ICONS[channel.name] || '';
 
                 channelDiv.innerHTML = `
-                    <div class="channel-left">
-                        ${iconUrl ? `<img src="${iconUrl}" alt="${channel.name}" class="channel-icon" />` : ''}
-                        <span class="channel-name-text">${channel.name}</span>
-                    </div>
-                    <div class="channel-right">
-                        <span class="flag">${channel.flag}</span>
+                    <div class="channel-click-area">
+                        <div class="channel-left">
+                            ${iconUrl ? `<img src="${iconUrl}" alt="${channel.name}" class="channel-icon" />` : ''}
+                            <span class="channel-name-text">${channel.name}</span>
+                        </div>
+                        <div class="channel-right">
+                            <span class="flag">${channel.flag}</span>
+                        </div>
                     </div>
                 `;
 
                 channelDiv.addEventListener('click', function() {
-                    const url = channel.url;
-                    if (device === 'ios') {
-                        window.location.href = `vlc://${url}`;
-                        showToast('📲 جاري فتح VLC... اضغط "Play" أو "Always Play URLs" عند ظهور الرسالة');
-                    } else if (device === 'android') {
-                        const intentUrl = `intent://${url.replace('http://', '').replace('https://', '')}#Intent;scheme=${url.startsWith('https') ? 'https' : 'http'};package=org.videolan.vlc;type=video/*;end`;
-                        window.location.href = intentUrl;
-                        setTimeout(() => {
-                            window.open(APP_LINKS.vlc.android, '_blank');
-                        }, 3000);
-                        showToast('📲 جاري فتح VLC...');
-                    } else {
-                        window.open(url, '_blank');
-                        showToast('📲 جاري فتح الرابط...');
-                    }
+                    openPlayerChoice(channel);
                 });
 
                 channelList.appendChild(channelDiv);
@@ -1136,13 +1416,13 @@
             const subText = document.getElementById('subText');
 
             if (device === 'ios') {
-                note.innerHTML = '🍏 <strong>iPhone/iPad:</strong> اضغط على القناة لفتح <strong>VLC</strong>';
-                subText.textContent = 'اختر القناة للبدء';
+                note.innerHTML = '🍏 <strong>iPhone/iPad:</strong> اضغط على القناة ثم اختر <strong>VLC</strong>';
+                subText.textContent = 'اختر القناة واختر المشغل';
             } else if (device === 'android') {
-                note.innerHTML = '🤖 <strong>Android:</strong> اضغط على القناة لفتح <strong>VLC</strong>';
-                subText.textContent = 'اختر القناة للبدء';
+                note.innerHTML = '🤖 <strong>Android:</strong> اضغط على القناة ثم اختر <strong>VLC</strong> أو <strong>MX Player</strong>';
+                subText.textContent = 'اختر القناة واختر المشغل';
             } else {
-                note.innerHTML = '💡 اضغط على القناة لفتح البث';
+                note.innerHTML = '💡 اضغط على القناة ثم اختر المشغل';
                 subText.textContent = 'اختر القناة للبدء';
             }
         }
@@ -1161,6 +1441,13 @@
             showToast('📺 IPTV | مجلس معلمي سعيد بن العاص');
         });
 
+        // ===== إغلاق النافذة عند الضغط خارجها =====
+        document.getElementById('playerChoiceOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePlayerChoice();
+            }
+        });
+
         // ===== التهيئة =====
         renderAppLinks();
         renderChannels();
@@ -1169,6 +1456,7 @@
         console.log('📺 IPTV - مجلس معلمي سعيد بن العاص للبث المباشر');
         console.log(`📡 تم تحميل ${channels.length} قناة`);
         console.log(`📱 الجهاز: ${device}`);
+        console.log('🎬 خيارات التشغيل: VLC و MX Player (لأندرويد)');
     </script>
 
 </body>
