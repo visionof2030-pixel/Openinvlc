@@ -802,9 +802,9 @@
 
         <!-- ===== تحميل التطبيقات ===== -->
         <div class="app-download-section" id="appDownloadSection">
-            <div class="app-title">
+            <div class="app-title" id="appTitle">
                 <span class="icon-small">📲</span>
-                قبل الضغط على القنوات يرجى تحميل "المشغل" التالي
+                <!-- سيتم تعبئتها بواسطة JavaScript حسب الجهاز -->
             </div>
             <div class="app-links" id="appLinksContainer">
                 <!-- سيتم تعبئتها بواسطة JavaScript حسب الجهاز -->
@@ -976,8 +976,14 @@
         function renderAppLinks() {
             const container = document.getElementById('appLinksContainer');
             const buttonsRow = document.getElementById('downloadButtonsRow');
+            const appTitle = document.getElementById('appTitle');
 
             if (device === 'ios') {
+                appTitle.innerHTML = `
+                    <span class="icon-small">📲</span>
+                    قبل الضغط على القنوات يرجى تحميل "المشغل" التالي
+                `;
+
                 container.innerHTML = `
                     <div class="app-row">
                         <span class="app-name">
@@ -1005,6 +1011,12 @@
                 document.getElementById('showIssueBtn').classList.add('visible');
 
             } else if (device === 'android') {
+                // العبارة المطلوبة للأندرويد
+                appTitle.innerHTML = `
+                    <span class="icon-small">📲</span>
+                    قبل الضغط على القنوات يرجى تحميل أحد "المشغلين التاليين" أو "كلاهما"
+                `;
+
                 container.innerHTML = `
                     <div class="app-row">
                         <span class="app-name">
@@ -1049,6 +1061,11 @@
                 document.getElementById('iosMessageSection').classList.remove('visible');
 
             } else {
+                appTitle.innerHTML = `
+                    <span class="icon-small">📲</span>
+                    قبل الضغط على القنوات يرجى تحميل "المشغل" التالي
+                `;
+
                 container.innerHTML = `
                     <div class="app-row">
                         <span class="app-name">
@@ -1142,13 +1159,10 @@
 
                 channelDiv.addEventListener('click', function() {
                     if (device === 'ios') {
-                        // iPhone - تشغيل مباشر على VLC بدون نافذة اختيار
                         playChannelOnIOS(channel.url);
                     } else if (device === 'android') {
-                        // Android - عرض نافذة اختيار المشغل
                         showAndroidPlayerChoice(channel);
                     } else {
-                        // أجهزة أخرى
                         window.open(channel.url, '_blank');
                         showToast('📲 جاري فتح الرابط...');
                     }
@@ -1160,7 +1174,6 @@
 
         // ===== نافذة اختيار المشغل للأندرويد =====
         function showAndroidPlayerChoice(channel) {
-            // إنشاء نافذة منبثقة بسيطة باستخدام alert محسن
             const overlay = document.createElement('div');
             overlay.style.cssText = `
                 position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -1196,7 +1209,6 @@
             document.body.appendChild(overlay);
             document.body.style.overflow = 'hidden';
 
-            // إغلاق عند الضغط خارج النافذة
             overlay.addEventListener('click', function(e) {
                 if (e.target === this) {
                     closeAndroidOverlay();
@@ -1248,7 +1260,6 @@
         console.log('📺 IPTV - مجلس معلمي سعيد بن العاص للبث المباشر');
         console.log(`📡 تم تحميل ${channels.length} قناة`);
         console.log(`📱 الجهاز: ${device}`);
-        console.log('🎬 iOS: تشغيل مباشر على VLC | Android: اختيار بين VLC و MX Player');
     </script>
 
 </body>
