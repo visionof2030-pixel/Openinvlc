@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>📺 IPTV Player - قنوات بي إن ماكس</title>
+    <title>📺 IPTV - مجلس معلمي سعيد بن العاص</title>
     <style>
-        /* ============================================================
-           ROOT & RESET (WORLD CUP STYLE)
-           ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -113,13 +110,14 @@
 
         .header h1 {
             color: var(--gold);
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 800;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             text-shadow: 0 0 40px rgba(212, 167, 69, 0.10);
+            line-height: 1.4;
         }
 
         .header .badge {
@@ -161,11 +159,12 @@
             font-size: 13px;
             font-weight: 700;
             color: var(--gold-light);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            line-height: 1.6;
         }
 
         .app-download-section .app-title .icon-small {
@@ -176,6 +175,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            margin-bottom: 12px;
         }
 
         .app-download-section .app-links .app-row {
@@ -290,7 +290,6 @@
             transform: translateY(-2px);
         }
 
-        /* ===== زر تحميل المشغل ===== */
         .download-now-btn {
             display: flex;
             align-items: center;
@@ -298,7 +297,7 @@
             gap: 10px;
             width: 100%;
             padding: 14px 20px;
-            margin-top: 12px;
+            margin-top: 4px;
             border: none;
             border-radius: 60px;
             background: var(--gold-gradient);
@@ -355,35 +354,7 @@
             box-shadow: 0 8px 40px rgba(0, 122, 255, 0.35);
         }
 
-        .download-now-btn.mx-btn {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            color: #fff;
-            box-shadow: 0 4px 20px rgba(231, 76, 60, 0.25);
-        }
-
-        .download-now-btn.mx-btn:hover {
-            box-shadow: 0 8px 40px rgba(231, 76, 60, 0.35);
-        }
-
-        .app-download-section .app-hint {
-            font-size: 11px;
-            color: var(--text-secondary);
-            margin-top: 10px;
-            padding: 8px 12px;
-            background: var(--gold-glow);
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border-gold);
-        }
-
-        .app-download-section .app-hint strong {
-            color: var(--gold-light);
-        }
-
-        .app-download-section .app-hint .emoji {
-            font-size: 14px;
-        }
-
-        /* ===== IOS MESSAGE SECTION ===== */
+        /* ===== IOS MESSAGE SECTION - ARABIC SUPPORT ===== */
         .ios-message-section {
             display: none;
             background: var(--ios-message-bg);
@@ -423,6 +394,7 @@
             font-size: 13px;
             color: var(--text-secondary);
             line-height: 1.9;
+            text-align: right;
         }
 
         .ios-message-section .msg-content .highlight {
@@ -433,9 +405,10 @@
         .ios-message-section .msg-content .step {
             display: flex;
             align-items: center;
-            justify-content: flex-start;
-            gap: 10px;
-            padding: 4px 0;
+            justify-content: flex-end;
+            gap: 12px;
+            padding: 6px 0;
+            direction: rtl;
         }
 
         .ios-message-section .msg-content .step .num {
@@ -444,15 +417,15 @@
             justify-content: center;
             background: var(--gold-gradient);
             color: #0a0e1a;
-            min-width: 22px;
-            width: 22px;
-            height: 22px;
+            min-width: 24px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             font-weight: 800;
-            font-size: 11px;
-            line-height: 22px;
+            font-size: 12px;
+            line-height: 24px;
             flex-shrink: 0;
-            order: 0;
+            order: 1;
         }
 
         .ios-message-section .msg-content .step .step-text {
@@ -460,6 +433,9 @@
             align-items: center;
             gap: 6px;
             flex-wrap: wrap;
+            order: 0;
+            flex: 1;
+            justify-content: flex-end;
         }
 
         .ios-message-section .msg-content .step .step-text .highlight-btn {
@@ -558,7 +534,6 @@
             color: var(--gold-light);
         }
 
-        /* ===== زر عرض المشكلة ===== */
         .show-issue-btn {
             display: none;
             align-items: center;
@@ -590,11 +565,11 @@
             display: inline-flex;
         }
 
-        /* ===== CHANNEL LIST ===== */
+        /* ===== CHANNEL LIST - CLEAN PREMIUM DESIGN ===== */
         .channel-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
             margin-top: 5px;
         }
 
@@ -602,10 +577,15 @@
             background: var(--bg-card);
             backdrop-filter: blur(12px);
             border-radius: var(--radius-md);
-            padding: 14px 18px;
+            padding: 16px 20px;
             border: 1px solid var(--border-subtle);
             transition: var(--transition);
             box-shadow: var(--shadow-card);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 76px;
+            cursor: pointer;
         }
 
         .channel-item:active {
@@ -616,111 +596,48 @@
         .channel-item:hover {
             border-color: var(--border-gold);
             transform: translateY(-2px);
+            box-shadow: var(--shadow-card), 0 8px 30px rgba(212, 167, 69, 0.04);
         }
 
-        .channel-name {
-            color: var(--text-primary);
+        .channel-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .channel-left .channel-icon {
+            width: 76px;
+            height: 76px;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.40);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .channel-left .channel-icon:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 24px rgba(212, 167, 69, 0.15);
+        }
+
+        .channel-left .channel-name-text {
             font-size: 16px;
             font-weight: 700;
-            text-align: right;
-            margin-bottom: 8px;
+            color: var(--text-primary);
+            letter-spacing: 0.3px;
+        }
+
+        .channel-right {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            flex-shrink: 0;
         }
 
-        .channel-name .flag {
-            font-size: 20px;
-        }
-
-        .channel-name .name-text {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .channel-buttons {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .btn-small {
-            flex: 1;
-            min-width: 80px;
-            padding: 10px 14px;
-            border-radius: 60px;
-            font-size: 12px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            color: #fff;
-            text-decoration: none;
-            text-align: center;
-            transition: var(--transition);
-            font-family: inherit;
-            box-shadow: 0 4px 20px rgba(255, 136, 0, 0.10);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: var(--gold-gradient);
-        }
-
-        .btn-small:active {
-            transform: scale(0.95);
-        }
-
-        .btn-small:hover {
-            transform: translateY(-2px);
-        }
-
-        .btn-small .btn-icon-img {
-            width: 22px;
-            height: 22px;
-            border-radius: 5px;
-            object-fit: cover;
-        }
-
-        .btn-vlc-small {
-            background: linear-gradient(145deg, #ff8800, #e67600);
-            box-shadow: 0 4px 20px rgba(255, 136, 0, 0.20);
-        }
-
-        .btn-vlc-small:hover {
-            box-shadow: 0 8px 32px rgba(255, 136, 0, 0.30);
-        }
-
-        .btn-mx-small {
-            background: linear-gradient(145deg, #e74c3c, #c0392b);
-            box-shadow: 0 4px 20px rgba(231, 76, 60, 0.20);
-        }
-
-        .btn-mx-small:hover {
-            box-shadow: 0 8px 32px rgba(231, 76, 60, 0.30);
-        }
-
-        .btn-ios-small {
-            background: linear-gradient(145deg, #ff6b6b, #ee5a24);
-            box-shadow: 0 4px 20px rgba(238, 90, 36, 0.20);
-        }
-
-        .btn-ios-small:hover {
-            box-shadow: 0 8px 32px rgba(238, 90, 36, 0.30);
-        }
-
-        .btn-small .emoji {
-            font-size: 14px;
-        }
-
-        .platform-badge {
-            display: inline-block;
-            font-size: 8px;
-            background: rgba(255, 255, 255, 0.06);
-            padding: 2px 8px;
-            border-radius: 8px;
-            color: var(--text-secondary);
-            margin-left: 4px;
+        .channel-right .flag {
+            font-size: 22px;
+            opacity: 0.8;
         }
 
         .divider {
@@ -799,23 +716,34 @@
         }
 
         @media (max-width: 400px) {
-            .channel-name {
-                font-size: 14px;
+            .channel-item {
+                padding: 12px 14px;
+                min-height: 62px;
             }
-            .btn-small {
-                font-size: 10px;
-                padding: 8px 10px;
-                min-width: 60px;
+
+            .channel-left .channel-icon {
+                width: 56px;
+                height: 56px;
+                border-radius: 10px;
             }
-            .btn-small .btn-icon-img {
-                width: 18px;
-                height: 18px;
+
+            .channel-left .channel-name-text {
+                font-size: 13px;
             }
+
+            .channel-left {
+                gap: 12px;
+            }
+
+            .channel-right .flag {
+                font-size: 18px;
+            }
+
             .container {
                 padding: 20px 16px;
             }
             .header h1 {
-                font-size: 20px;
+                font-size: 17px;
             }
             .app-download-section .app-links .app-row {
                 flex-direction: column;
@@ -849,31 +777,26 @@
     <div class="container">
         <div class="header">
             <span class="icon">📡</span>
-            <h1>قنوات بي إن ماكس</h1>
+            <h1>مجلس معلمي سعيد بن العاص للبث المباشر</h1>
             <span class="badge">● LIVE</span>
-            <p id="subText">اختر القناة ثم التطبيق المناسب</p>
+            <p id="subText">اختر القناة للبدء</p>
         </div>
 
         <!-- ===== تحميل التطبيقات ===== -->
         <div class="app-download-section" id="appDownloadSection">
             <div class="app-title">
                 <span class="icon-small">📲</span>
-                تحميل التطبيقات المطلوبة
+                قبل الضغط على القنوات يرجى تحميل "المشغل" التالي
             </div>
             <div class="app-links" id="appLinksContainer">
                 <!-- سيتم تعبئتها بواسطة JavaScript حسب الجهاز -->
             </div>
 
-            <!-- ===== زر تحميل المشغل ===== -->
             <a href="#" id="downloadNowBtn" class="download-now-btn" target="_blank">
                 <span class="btn-icon">⬇️</span>
                 تنزيل المشغل الآن
                 <span class="btn-arrow">→</span>
             </a>
-
-            <div class="app-hint" id="appHint">
-                <span class="emoji">💡</span> <strong>تنبيه:</strong> يجب تحميل التطبيق المناسب قبل تشغيل البث.
-            </div>
         </div>
 
         <!-- ===== زر عرض المشكلة + رسالة iPhone ===== -->
@@ -884,33 +807,36 @@
                 <span id="toggleIcon">▼</span>
             </button>
 
-            <!-- ===== رسالة خاصة لمستخدمي iPhone مع الصورة ===== -->
             <div class="ios-message-section" id="iosMessageSection">
                 <div class="msg-title">
                     <span class="icon-msg">📱</span>
                     خطوات عمل المشغل للآيفون
                 </div>
                 <div class="msg-content">
+                    <!-- الخطوة 1 -->
                     <div class="step">
-                        <span class="num">1</span>
+                        <span class="num">١</span>
                         <span class="step-text">
                             بعد الضغط على زر <span class="highlight-btn">VLC</span>، ستظهر لك رسالة مثل الصورة أدناه.
                         </span>
                     </div>
+
+                    <!-- الخطوة 2 -->
                     <div class="step">
-                        <span class="num">2</span>
+                        <span class="num">٢</span>
                         <span class="step-text">
                             اضغط على <span class="highlight">"Play"</span> لتشغيل البث مباشرة.
                         </span>
                     </div>
+
+                    <!-- الخطوة 3 -->
                     <div class="step">
-                        <span class="num">3</span>
+                        <span class="num">٣</span>
                         <span class="step-text">
                             أو اضغط على <span class="highlight">"Always Play URLs"</span> لتشغيل البث تلقائياً في المستقبل.
                         </span>
                     </div>
 
-                    <!-- ===== صورة الشرح ===== -->
                     <div class="ios-screenshot-wrapper">
                         <div class="screenshot-label">
                             <span class="arrow-icon">👇</span>
@@ -965,6 +891,17 @@
         const APP_ICONS = {
             vlc: "https://i.ibb.co/xKbLhXTx/FB62-A254-E0-D0-4900-B7-E0-62501661-F5-C8.png",
             mx: "https://i.ibb.co/tpWSsYvQ/928-DE876-714-A-489-F-B008-4-CB6-A1-ED524-A.png"
+        };
+
+        // ===== أيقونات القنوات =====
+        const CHANNEL_ICONS = {
+            "Bein Max 1 HD": "https://i.ibb.co/JhQzHhf/496e5898-6e49-47a9-af51-1ef444b13ac0.png",
+            "Bein Max 2 HD": "https://i.ibb.co/Zpjcw1jX/2d939d57-59ae-48a7-9d9e-338991d2521c.png",
+            "Bein Max 3 HD": "https://i.ibb.co/XkXvqgKX/fc61192e-8345-4ad4-8b6a-541ba5c592b6.png",
+            "Bein Max 4 HD": "https://i.ibb.co/dJQWtfMd/63c97a85-0ee5-496e-81d2-df2997d53f14.png",
+            "ALWAN 1 4K": "https://i.ibb.co/zVRdJWMy/f5a2fa06-36d9-450a-a037-641c809e8147.png",
+            "ALWAN 2 4K": "https://i.ibb.co/zVRdJWMy/f5a2fa06-36d9-450a-a037-641c809e8147.png",
+            "Bein TOD HDR": "https://i.ibb.co/3yYwCbxS/34a7f8a7-9183-4d97-ae30-cf05b5f72513.png"
         };
 
         // ===== قائمة القنوات =====
@@ -1027,10 +964,9 @@
 
         const device = getDeviceType();
 
-        // ===== عرض روابط التطبيقات حسب الجهاز مع أيقونات =====
+        // ===== عرض روابط التطبيقات حسب الجهاز =====
         function renderAppLinks() {
             const container = document.getElementById('appLinksContainer');
-            const hint = document.getElementById('appHint');
             const downloadBtn = document.getElementById('downloadNowBtn');
 
             if (device === 'ios') {
@@ -1048,7 +984,6 @@
                         </span>
                     </div>
                 `;
-                hint.innerHTML = `<span class="emoji">💡</span> <strong>تنبيه:</strong> يجب تحميل <strong>VLC</strong> من متجر التطبيقات قبل تشغيل البث.`;
 
                 downloadBtn.href = APP_LINKS.vlc.ios;
                 downloadBtn.className = 'download-now-btn ios-btn';
@@ -1088,7 +1023,6 @@
                         </span>
                     </div>
                 `;
-                hint.innerHTML = `<span class="emoji">💡</span> <strong>تنبيه:</strong> يمكنك استخدام <strong>VLC</strong> أو <strong>MX Player</strong>. قم بتحميل أحدهما من متجر جوجل.`;
 
                 downloadBtn.href = APP_LINKS.vlc.android;
                 downloadBtn.className = 'download-now-btn android-btn';
@@ -1116,7 +1050,6 @@
                         </span>
                     </div>
                 `;
-                hint.innerHTML = `<span class="emoji">💡</span> قم بتحميل <strong>VLC</strong> لتشغيل البث.`;
 
                 downloadBtn.href = APP_LINKS.vlc.android;
                 downloadBtn.className = 'download-now-btn';
@@ -1163,84 +1096,36 @@
                 const channelDiv = document.createElement('div');
                 channelDiv.className = 'channel-item';
 
-                const nameDiv = document.createElement('div');
-                nameDiv.className = 'channel-name';
-                nameDiv.innerHTML = `
-                    <span class="flag">${channel.flag}</span>
-                    <span class="name-text">${channel.name}</span>
+                const iconUrl = CHANNEL_ICONS[channel.name] || '';
+
+                channelDiv.innerHTML = `
+                    <div class="channel-left">
+                        ${iconUrl ? `<img src="${iconUrl}" alt="${channel.name}" class="channel-icon" />` : ''}
+                        <span class="channel-name-text">${channel.name}</span>
+                    </div>
+                    <div class="channel-right">
+                        <span class="flag">${channel.flag}</span>
+                    </div>
                 `;
 
-                const buttonsDiv = document.createElement('div');
-                buttonsDiv.className = 'channel-buttons';
-
-                if (device === 'ios') {
-                    const btnVLC = document.createElement('a');
-                    btnVLC.href = `vlc://${channel.url}`;
-                    btnVLC.className = 'btn-small btn-ios-small';
-                    btnVLC.innerHTML = `
-                        <img src="${APP_ICONS.vlc}" alt="VLC" class="btn-icon-img" />
-                        VLC
-                        <span class="platform-badge">🍏</span>
-                    `;
-                    btnVLC.target = '_blank';
-                    btnVLC.onclick = function(e) {
-                        e.preventDefault();
-                        window.location.href = this.href;
+                channelDiv.addEventListener('click', function() {
+                    const url = channel.url;
+                    if (device === 'ios') {
+                        window.location.href = `vlc://${url}`;
                         showToast('📲 جاري فتح VLC... اضغط "Play" أو "Always Play URLs" عند ظهور الرسالة');
-                    };
-                    buttonsDiv.appendChild(btnVLC);
-
-                } else if (device === 'android') {
-                    const btnVLC = document.createElement('a');
-                    btnVLC.href = `intent://${channel.url.replace('http://', '').replace('https://', '')}#Intent;scheme=${channel.url.startsWith('https') ? 'https' : 'http'};package=org.videolan.vlc;type=video/*;end`;
-                    btnVLC.className = 'btn-small btn-vlc-small';
-                    btnVLC.innerHTML = `
-                        <img src="${APP_ICONS.vlc}" alt="VLC" class="btn-icon-img" />
-                        VLC
-                        <span class="platform-badge">🤖</span>
-                    `;
-                    btnVLC.onclick = function(e) {
-                        e.preventDefault();
-                        window.location.href = this.href;
+                    } else if (device === 'android') {
+                        const intentUrl = `intent://${url.replace('http://', '').replace('https://', '')}#Intent;scheme=${url.startsWith('https') ? 'https' : 'http'};package=org.videolan.vlc;type=video/*;end`;
+                        window.location.href = intentUrl;
                         setTimeout(() => {
                             window.open(APP_LINKS.vlc.android, '_blank');
                         }, 3000);
                         showToast('📲 جاري فتح VLC...');
-                    };
-                    buttonsDiv.appendChild(btnVLC);
+                    } else {
+                        window.open(url, '_blank');
+                        showToast('📲 جاري فتح الرابط...');
+                    }
+                });
 
-                    const btnMX = document.createElement('a');
-                    btnMX.href = `intent://${channel.url.replace('http://', '').replace('https://', '')}#Intent;scheme=${channel.url.startsWith('https') ? 'https' : 'http'};package=com.mxtech.videoplayer.ad;type=video/*;end`;
-                    btnMX.className = 'btn-small btn-mx-small';
-                    btnMX.innerHTML = `
-                        <img src="${APP_ICONS.mx}" alt="MX" class="btn-icon-img" />
-                        MX
-                        <span class="platform-badge">🤖</span>
-                    `;
-                    btnMX.onclick = function(e) {
-                        e.preventDefault();
-                        window.location.href = this.href;
-                        setTimeout(() => {
-                            window.open(APP_LINKS.mx.android, '_blank');
-                        }, 3000);
-                        showToast('📲 جاري فتح MX Player...');
-                    };
-                    buttonsDiv.appendChild(btnMX);
-
-                } else {
-                    const btnDownload = document.createElement('a');
-                    btnDownload.href = APP_LINKS.vlc.android;
-                    btnDownload.target = '_blank';
-                    btnDownload.className = 'btn-small btn-vlc-small';
-                    btnDownload.innerHTML = `
-                        <img src="${APP_ICONS.vlc}" alt="VLC" class="btn-icon-img" />
-                        تحميل VLC
-                    `;
-                    buttonsDiv.appendChild(btnDownload);
-                }
-
-                channelDiv.appendChild(nameDiv);
-                channelDiv.appendChild(buttonsDiv);
                 channelList.appendChild(channelDiv);
             });
         }
@@ -1251,13 +1136,13 @@
             const subText = document.getElementById('subText');
 
             if (device === 'ios') {
-                note.innerHTML = '🍏 <strong>iPhone/iPad:</strong> استخدم زر <strong>VLC</strong> لكل قناة';
-                subText.textContent = 'اختر القناة واضغط على VLC';
+                note.innerHTML = '🍏 <strong>iPhone/iPad:</strong> اضغط على القناة لفتح <strong>VLC</strong>';
+                subText.textContent = 'اختر القناة للبدء';
             } else if (device === 'android') {
-                note.innerHTML = '🤖 <strong>Android:</strong> استخدم <strong>VLC</strong> أو <strong>MX Player</strong>';
-                subText.textContent = 'اختر القناة والتطبيق المناسب';
+                note.innerHTML = '🤖 <strong>Android:</strong> اضغط على القناة لفتح <strong>VLC</strong>';
+                subText.textContent = 'اختر القناة للبدء';
             } else {
-                note.innerHTML = '💡 استخدم <strong>VLC</strong> أو <strong>MX Player</strong>';
+                note.innerHTML = '💡 اضغط على القناة لفتح البث';
                 subText.textContent = 'اختر القناة للبدء';
             }
         }
@@ -1273,7 +1158,7 @@
 
         // ===== Footer Click =====
         document.getElementById('footerTrigger').addEventListener('click', function() {
-            showToast('📺 IPTV Player | قنوات بي إن ماكس');
+            showToast('📺 IPTV | مجلس معلمي سعيد بن العاص');
         });
 
         // ===== التهيئة =====
@@ -1281,10 +1166,9 @@
         renderChannels();
         updateNote();
 
-        console.log('📺 IPTV Player - قنوات بي إن ماكس');
+        console.log('📺 IPTV - مجلس معلمي سعيد بن العاص للبث المباشر');
         console.log(`📡 تم تحميل ${channels.length} قناة`);
         console.log(`📱 الجهاز: ${device}`);
-        console.log('🎨 تم إضافة أيقونات التطبيقات');
     </script>
 
 </body>
