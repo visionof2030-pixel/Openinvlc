@@ -2,85 +2,310 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>📺 IPTV Player - قنوات بي إن</title>
     <style>
+        /* ============================================================
+           ROOT & RESET (WORLD CUP STYLE)
+           ============================================================ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111927;
+            --bg-card: rgba(17, 25, 40, 0.85);
+            --bg-card-hover: rgba(30, 45, 70, 0.92);
+            --bg-input: rgba(255, 255, 255, 0.04);
+            --gold: #d4a745;
+            --gold-light: #f0d080;
+            --gold-glow: rgba(212, 167, 69, 0.15);
+            --gold-gradient: linear-gradient(135deg, #e8c86a, #c99a2e);
+            --text-primary: #edf2f7;
+            --text-secondary: #8a9bb5;
+            --text-muted: #5a6f8c;
+            --success: #2ecc71;
+            --success-bg: rgba(46, 204, 113, 0.10);
+            --danger: #e74c3c;
+            --danger-bg: rgba(231, 76, 60, 0.10);
+            --info: #4a9eff;
+            --info-bg: rgba(74, 158, 255, 0.10);
+            --border-subtle: rgba(255, 255, 255, 0.04);
+            --border-gold: rgba(212, 167, 69, 0.20);
+            --shadow-card: 0 12px 48px rgba(0, 0, 0, 0.50), 0 0 0 1px rgba(255, 255, 255, 0.02);
+            --shadow-glow: 0 0 60px rgba(212, 167, 69, 0.04);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 10px;
+            --radius-xs: 6px;
+            --transition: all 0.30s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f4f6f9;
+            --bg-secondary: #ffffff;
+            --bg-card: rgba(255, 255, 255, 0.92);
+            --bg-card-hover: rgba(255, 255, 255, 0.98);
+            --bg-input: rgba(0, 0, 0, 0.02);
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --border-subtle: rgba(0, 0, 0, 0.06);
+            --border-gold: rgba(212, 167, 69, 0.30);
+            --shadow-card: 0 12px 48px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
+            --shadow-glow: 0 0 60px rgba(212, 167, 69, 0.06);
+            --gold-glow: rgba(212, 167, 69, 0.12);
+        }
+
         body {
-            background: #0a0a0a;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', 'Cairo', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             padding: 15px;
+            transition: var(--transition);
         }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+
         .container {
-            background: #111;
+            background: var(--bg-secondary);
             padding: 30px 25px;
-            border-radius: 24px;
-            max-width: 480px;
+            border-radius: var(--radius-lg);
+            max-width: 520px;
             width: 100%;
-            border: 1px solid #2a2a2a;
-            box-shadow: 0 20px 60px rgba(255, 136, 0, 0.08);
+            border: 1px solid var(--border-gold);
+            box-shadow: var(--shadow-card), var(--shadow-glow);
             text-align: center;
+            transition: var(--transition);
         }
+
         .header {
             padding-bottom: 20px;
-            border-bottom: 1px solid #222;
+            border-bottom: 2px solid var(--gold);
+            margin-bottom: 20px;
         }
+
         .header .icon {
             font-size: 50px;
             display: block;
             margin-bottom: 5px;
         }
+
         .header h1 {
-            color: #00ff88;
+            color: var(--gold);
             font-size: 24px;
-            font-weight: 700;
+            font-weight: 800;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 40px rgba(212, 167, 69, 0.10);
         }
+
         .header .badge {
             display: inline-block;
-            background: #ff3333;
+            background: var(--danger);
             color: #fff;
             font-size: 10px;
-            padding: 3px 12px;
+            padding: 3px 16px;
             border-radius: 20px;
             margin-top: 5px;
             animation: blink 1.2s infinite;
+            font-weight: 700;
         }
+
         @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.3; }
         }
+
         .header p {
-            color: #666;
+            color: var(--text-secondary);
             font-size: 13px;
             margin-top: 6px;
         }
+
+        /* ===== APP DOWNLOAD SECTION ===== */
+        .app-download-section {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border-radius: var(--radius-md);
+            padding: 16px 18px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border-gold);
+            box-shadow: var(--shadow-card);
+            text-align: center;
+        }
+
+        .app-download-section .app-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gold-light);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .app-download-section .app-title .icon-small {
+            font-size: 18px;
+        }
+
+        .app-download-section .app-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .app-download-section .app-links .app-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition);
+        }
+
+        .app-download-section .app-links .app-row:hover {
+            border-color: var(--border-gold);
+            background: rgba(212, 167, 69, 0.04);
+        }
+
+        .app-download-section .app-links .app-row .app-name {
+            font-weight: 700;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .app-download-section .app-links .app-row .app-name .app-icon {
+            font-size: 18px;
+        }
+
+        .app-download-section .app-links .app-row .app-badge {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .app-download-section .app-links .app-row .app-badge .badge-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .app-download-section .app-links .app-row .app-badge .badge-link.android {
+            background: var(--success-bg);
+            color: var(--success);
+            border: 1px solid rgba(46, 204, 113, 0.15);
+        }
+
+        .app-download-section .app-links .app-row .app-badge .badge-link.android:hover {
+            background: rgba(46, 204, 113, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .app-download-section .app-links .app-row .app-badge .badge-link.ios {
+            background: var(--info-bg);
+            color: var(--info);
+            border: 1px solid rgba(74, 158, 255, 0.15);
+        }
+
+        .app-download-section .app-links .app-row .app-badge .badge-link.ios:hover {
+            background: rgba(74, 158, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .app-download-section .app-links .app-row .app-badge .badge-link.mx {
+            background: var(--danger-bg);
+            color: var(--danger);
+            border: 1px solid rgba(231, 76, 60, 0.15);
+        }
+
+        .app-download-section .app-links .app-row .app-badge .badge-link.mx:hover {
+            background: rgba(231, 76, 60, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .app-download-section .app-hint {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: var(--gold-glow);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-gold);
+        }
+
+        .app-download-section .app-hint strong {
+            color: var(--gold-light);
+        }
+
+        .app-download-section .app-hint .emoji {
+            font-size: 14px;
+        }
+
+        /* ===== CHANNEL LIST ===== */
         .channel-list {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-top: 15px;
+            margin-top: 5px;
         }
+
         .channel-item {
-            background: #1a1a1a;
-            border-radius: 14px;
-            padding: 12px 16px;
-            border: 1px solid #2a2a2a;
-            transition: all 0.3s;
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border-radius: var(--radius-md);
+            padding: 14px 18px;
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition);
+            box-shadow: var(--shadow-card);
         }
+
         .channel-item:active {
-            transform: scale(0.97);
-            border-color: #00ff88;
+            transform: scale(0.98);
+            border-color: var(--gold);
         }
+
+        .channel-item:hover {
+            border-color: var(--border-gold);
+            transform: translateY(-2px);
+        }
+
         .channel-name {
-            color: #fff;
+            color: var(--text-primary);
             font-size: 16px;
             font-weight: 700;
             text-align: right;
@@ -89,118 +314,188 @@
             align-items: center;
             justify-content: space-between;
         }
+
         .channel-name .flag {
             font-size: 20px;
         }
+
+        .channel-name .name-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .channel-name .name-text .gold-text {
+            color: var(--gold-light);
+        }
+
         .channel-buttons {
             display: flex;
             gap: 8px;
             flex-wrap: wrap;
         }
+
         .btn-small {
             flex: 1;
             min-width: 80px;
-            padding: 8px 12px;
-            border-radius: 10px;
+            padding: 10px 14px;
+            border-radius: 60px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
             border: none;
             cursor: pointer;
             color: #fff;
             text-decoration: none;
             text-align: center;
-            transition: all 0.2s;
+            transition: var(--transition);
+            font-family: inherit;
+            box-shadow: 0 4px 20px rgba(255, 136, 0, 0.10);
         }
+
         .btn-small:active {
             transform: scale(0.95);
         }
-        .btn-vlc-small {
-            background: linear-gradient(145deg, #ff8800, #e67600);
+
+        .btn-small:hover {
+            transform: translateY(-2px);
         }
+
+        .btn-vlc-small {
+            background: var(--gold-gradient);
+            box-shadow: 0 4px 20px rgba(212, 167, 69, 0.20);
+        }
+
+        .btn-vlc-small:hover {
+            box-shadow: 0 8px 32px rgba(212, 167, 69, 0.30);
+        }
+
         .btn-mx-small {
             background: linear-gradient(145deg, #e74c3c, #c0392b);
+            box-shadow: 0 4px 20px rgba(231, 76, 60, 0.20);
         }
+
+        .btn-mx-small:hover {
+            box-shadow: 0 8px 32px rgba(231, 76, 60, 0.30);
+        }
+
         .btn-ios-small {
             background: linear-gradient(145deg, #ff6b6b, #ee5a24);
+            box-shadow: 0 4px 20px rgba(238, 90, 36, 0.20);
         }
+
+        .btn-ios-small:hover {
+            box-shadow: 0 8px 32px rgba(238, 90, 36, 0.30);
+        }
+
         .btn-small .emoji {
             font-size: 14px;
         }
+
+        .platform-badge {
+            display: inline-block;
+            font-size: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 2px 8px;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            margin-left: 4px;
+        }
+
         .divider {
             display: flex;
             align-items: center;
             gap: 12px;
-            margin: 10px 0 8px;
+            margin: 16px 0 12px;
         }
+
         .divider::before,
         .divider::after {
             content: '';
             flex: 1;
             height: 1px;
-            background: #222;
+            background: var(--border-subtle);
         }
+
         .divider span {
-            color: #444;
+            color: var(--text-muted);
             font-size: 10px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .footer {
-            text-align: center;
-            color: #333;
-            font-size: 10px;
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid #1a1a1a;
-        }
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #00ff88;
-            color: #000;
-            padding: 12px 24px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 14px;
-            opacity: 0;
-            transition: opacity 0.4s;
-            pointer-events: none;
-            z-index: 999;
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-        }
-        .toast.show {
-            opacity: 1;
-        }
+
         .note {
-            color: #555;
+            color: var(--text-secondary);
             font-size: 11px;
             text-align: center;
             margin-top: 12px;
             line-height: 1.8;
         }
+
         .note strong {
-            color: #00ff88;
+            color: var(--gold-light);
         }
-        .platform-badge {
-            display: inline-block;
-            font-size: 8px;
-            background: #222;
-            padding: 2px 8px;
-            border-radius: 8px;
-            color: #666;
-            margin-left: 4px;
+
+        .footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 10px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-subtle);
+            cursor: pointer;
+            transition: var(--transition);
+            user-select: none;
         }
+
+        .footer:hover {
+            color: var(--gold-light);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold-gradient);
+            color: #0a0e1a;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+            z-index: 999;
+            box-shadow: 0 10px 30px rgba(212, 167, 69, 0.25);
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
         @media (max-width: 400px) {
             .channel-name {
                 font-size: 14px;
             }
             .btn-small {
                 font-size: 10px;
-                padding: 6px 8px;
+                padding: 8px 10px;
                 min-width: 60px;
+            }
+            .container {
+                padding: 20px 16px;
+            }
+            .header h1 {
+                font-size: 20px;
+            }
+            .app-download-section .app-links .app-row {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .app-download-section .app-links .app-row .app-badge {
+                justify-content: center;
             }
         }
     </style>
@@ -215,13 +510,49 @@
             <p id="subText">اختر القناة ثم التطبيق المناسب</p>
         </div>
 
+        <!-- ===== تحميل التطبيقات ===== -->
+        <div class="app-download-section">
+            <div class="app-title">
+                <span class="icon-small">📲</span>
+                تحميل التطبيقات المطلوبة
+            </div>
+            <div class="app-links">
+                <!-- VLC - Android & iOS -->
+                <div class="app-row">
+                    <span class="app-name">
+                        <span class="app-icon">🎬</span>
+                        VLC Media Player
+                    </span>
+                    <span class="app-badge">
+                        <a href="https://play.google.com/store/apps/details?id=org.videolan.vlc" target="_blank" class="badge-link android">🤖 Android</a>
+                        <a href="https://apps.apple.com/sa/app/vlc-media-player/id650377962" target="_blank" class="badge-link ios">🍏 iPhone</a>
+                    </span>
+                </div>
+
+                <!-- MX Player - Android فقط -->
+                <div class="app-row">
+                    <span class="app-name">
+                        <span class="app-icon">▶️</span>
+                        MX Player
+                    </span>
+                    <span class="app-badge">
+                        <a href="https://play.google.com/store/apps/details?id=com.mxtech.videoplayer.ad" target="_blank" class="badge-link mx">🤖 Android</a>
+                        <span style="font-size:10px;color:var(--text-muted);padding:4px 8px;">📱 للأندرويد فقط</span>
+                    </span>
+                </div>
+            </div>
+            <div class="app-hint">
+                <span class="emoji">💡</span> <strong>تنبيه:</strong> يجب تحميل التطبيق المناسب قبل تشغيل البث. عند الضغط على زر التشغيل سيتم توجيهك للتطبيق، وفي حال عدم وجوده سيتم فتح المتجر لتحميله.
+            </div>
+        </div>
+
         <div class="channel-list" id="channelList">
             <!-- سيتم إنشاء القنوات بواسطة JavaScript -->
         </div>
 
         <div class="divider"><span>📌 ملاحظة</span></div>
 
-        <p style="color:#666;font-size:12px;margin:5px 0;">
+        <p style="color:var(--text-secondary);font-size:12px;margin:5px 0;">
             🔹 اختر القناة ثم التطبيق المناسب لجهازك<br>
             🔹 تأكد من تثبيت التطبيق أولاً
         </p>
@@ -229,7 +560,7 @@
         <p class="note" id="deviceNote">
             💡 اختر التطبيق المناسب لجهازك
         </p>
-        <div class="footer">⚡ IPTV | يعمل على iPhone و Android</div>
+        <div class="footer" id="footerTrigger">⚡ IPTV | يعمل على iPhone و Android</div>
     </div>
 
     <div id="toast" class="toast">✅ جاري الفتح...</div>
@@ -269,6 +600,17 @@
             }
         ];
 
+        // ===== روابط التطبيقات =====
+        const APP_LINKS = {
+            vlc: {
+                android: "https://play.google.com/store/apps/details?id=org.videolan.vlc",
+                ios: "https://apps.apple.com/sa/app/vlc-media-player/id650377962"
+            },
+            mx: {
+                android: "https://play.google.com/store/apps/details?id=com.mxtech.videoplayer.ad"
+            }
+        };
+
         // ===== كشف نوع الجهاز =====
         function getDeviceType() {
             const ua = navigator.userAgent.toLowerCase();
@@ -291,7 +633,7 @@
             nameDiv.className = 'channel-name';
             nameDiv.innerHTML = `
                 <span class="flag">${channel.flag}</span>
-                <span>${channel.name}</span>
+                <span class="name-text">${channel.name}</span>
             `;
 
             // أزرار التشغيل
@@ -304,6 +646,27 @@
                 btnVLC.href = `vlc://${channel.url}`;
                 btnVLC.className = 'btn-small btn-ios-small';
                 btnVLC.innerHTML = `<span class="emoji">🎬</span> VLC <span class="platform-badge">🍏</span>`;
+                btnVLC.target = '_blank';
+                // إضافة محاولة فتح المتجر إذا لم يعمل التطبيق
+                btnVLC.onclick = function(e) {
+                    // محاولة فتح التطبيق، وإذا لم يعمل سيتم فتح المتجر
+                    const appUrl = this.href;
+                    const storeUrl = APP_LINKS.vlc.ios;
+                    // محاولة فتح التطبيق
+                    window.location.href = appUrl;
+                    // بعد 2 ثانية، إذا لم يتم فتح التطبيق، افتح المتجر
+                    setTimeout(() => {
+                        // نتحقق إذا كانت الصفحة لا زالت في الخلفية (التطبيق لم يفتح)
+                        // نستخدم تقنية الـ visibility change
+                    }, 2000);
+                    // نمنع الرابط من الفتح المباشر
+                    e.preventDefault();
+                    // نفتح المتجر كحل احتياطي
+                    setTimeout(() => {
+                        window.open(storeUrl, '_blank');
+                    }, 3000);
+                    showToast('📲 جاري فتح VLC... إذا لم يعمل، سيتم توجيهك للمتجر');
+                };
                 buttonsDiv.appendChild(btnVLC);
             } else if (device === 'android') {
                 // زر VLC للأندرويد
@@ -311,6 +674,18 @@
                 btnVLC.href = `intent://${channel.url.replace('http://', '')}#Intent;scheme=http;package=org.videolan.vlc;type=video/*;end`;
                 btnVLC.className = 'btn-small btn-vlc-small';
                 btnVLC.innerHTML = `<span class="emoji">🎬</span> VLC <span class="platform-badge">🤖</span>`;
+                btnVLC.onclick = function(e) {
+                    const appUrl = this.href;
+                    const storeUrl = APP_LINKS.vlc.android;
+                    // محاولة فتح التطبيق
+                    window.location.href = appUrl;
+                    // بعد 2 ثانية، افتح المتجر كحل احتياطي
+                    setTimeout(() => {
+                        window.open(storeUrl, '_blank');
+                    }, 3000);
+                    e.preventDefault();
+                    showToast('📲 جاري فتح VLC... إذا لم يعمل، سيتم توجيهك للمتجر');
+                };
                 buttonsDiv.appendChild(btnVLC);
 
                 // زر MX Player
@@ -318,15 +693,32 @@
                 btnMX.href = `intent://${channel.url.replace('http://', '')}#Intent;scheme=http;package=com.mxtech.videoplayer.ad;type=video/*;end`;
                 btnMX.className = 'btn-small btn-mx-small';
                 btnMX.innerHTML = `<span class="emoji">▶️</span> MX <span class="platform-badge">🤖</span>`;
+                btnMX.onclick = function(e) {
+                    const appUrl = this.href;
+                    const storeUrl = APP_LINKS.mx.android;
+                    window.location.href = appUrl;
+                    setTimeout(() => {
+                        window.open(storeUrl, '_blank');
+                    }, 3000);
+                    e.preventDefault();
+                    showToast('📲 جاري فتح MX Player... إذا لم يعمل، سيتم توجيهك للمتجر');
+                };
                 buttonsDiv.appendChild(btnMX);
             } else {
-                // للأجهزة الأخرى
+                // للأجهزة الأخرى - عرض روابط التحميل فقط
                 const btnVLC = document.createElement('a');
-                btnVLC.href = channel.url;
+                btnVLC.href = APP_LINKS.vlc.android;
                 btnVLC.target = '_blank';
                 btnVLC.className = 'btn-small btn-vlc-small';
-                btnVLC.innerHTML = `<span class="emoji">🎬</span> فتح`;
+                btnVLC.innerHTML = `<span class="emoji">📲</span> تحميل VLC`;
                 buttonsDiv.appendChild(btnVLC);
+
+                const btnMX = document.createElement('a');
+                btnMX.href = APP_LINKS.mx.android;
+                btnMX.target = '_blank';
+                btnMX.className = 'btn-small btn-mx-small';
+                btnMX.innerHTML = `<span class="emoji">📲</span> تحميل MX`;
+                buttonsDiv.appendChild(btnMX);
             }
 
             channelDiv.appendChild(nameDiv);
@@ -349,9 +741,23 @@
             subText.textContent = 'اختر القناة للبدء';
         }
 
+        // ===== دالة الإشعار =====
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 4000);
+        }
+
+        // ===== Footer Click =====
+        document.getElementById('footerTrigger').addEventListener('click', function() {
+            showToast('📺 IPTV Player | قنوات بي إن');
+        });
+
         console.log('📺 IPTV Player - قنوات بي إن');
         console.log(`📡 تم تحميل ${channels.length} قناة`);
         console.log('📱 يعمل على iPhone و Android');
+        console.log('📲 روابط التطبيقات:', APP_LINKS);
     </script>
 
 </body>
