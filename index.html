@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>📺 IPTV Player - قنوات بي إن</title>
+    <title>📺 IPTV Player - قنوات مجلس معلمي سعيد بن العاص</title>
     <style>
         /* ============================================================
            ROOT & RESET (WORLD CUP STYLE)
@@ -42,6 +42,7 @@
             --radius-sm: 10px;
             --radius-xs: 6px;
             --transition: all 0.30s cubic-bezier(0.4, 0, 0.2, 1);
+            --ios-message-bg: rgba(212, 167, 69, 0.08);
         }
 
         [data-theme="light"] {
@@ -58,6 +59,7 @@
             --shadow-card: 0 12px 48px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
             --shadow-glow: 0 0 60px rgba(212, 167, 69, 0.06);
             --gold-glow: rgba(212, 167, 69, 0.12);
+            --ios-message-bg: rgba(212, 167, 69, 0.10);
         }
 
         body {
@@ -276,6 +278,100 @@
             font-size: 14px;
         }
 
+        /* ===== IOS MESSAGE SECTION (خاصة للايفون) ===== */
+        .ios-message-section {
+            display: none;
+            background: var(--ios-message-bg);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-md);
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            text-align: right;
+        }
+
+        .ios-message-section.visible {
+            display: block;
+        }
+
+        .ios-message-section .msg-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gold-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            justify-content: center;
+        }
+
+        .ios-message-section .msg-title .icon-msg {
+            font-size: 18px;
+        }
+
+        .ios-message-section .msg-content {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            padding: 8px 12px;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: var(--radius-sm);
+        }
+
+        .ios-message-section .msg-content .highlight {
+            color: var(--gold-light);
+            font-weight: 700;
+        }
+
+        .ios-message-section .msg-content .step {
+            display: block;
+            padding: 4px 0;
+        }
+
+        .ios-message-section .msg-content .step .num {
+            display: inline-block;
+            background: var(--gold-gradient);
+            color: #0a0e1a;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            text-align: center;
+            font-weight: 800;
+            font-size: 11px;
+            line-height: 20px;
+            margin-left: 8px;
+        }
+
+        .ios-message-section .msg-content .step .highlight-btn {
+            display: inline-block;
+            background: var(--gold-glow);
+            border: 1px solid var(--border-gold);
+            padding: 2px 12px;
+            border-radius: 20px;
+            color: var(--gold-light);
+            font-weight: 700;
+            font-size: 11px;
+        }
+
+        .ios-message-section .msg-content .screenshot-note {
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-sm);
+            border: 1px dashed var(--border-gold);
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .ios-message-section .msg-content .screenshot-note .img-placeholder {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.20);
+            padding: 4px 16px;
+            border-radius: 8px;
+            font-size: 16px;
+            margin: 4px 0;
+        }
+
         /* ===== CHANNEL LIST ===== */
         .channel-list {
             display: flex;
@@ -468,6 +564,8 @@
             pointer-events: none;
             z-index: 999;
             box-shadow: 0 10px 30px rgba(212, 167, 69, 0.25);
+            max-width: 90%;
+            text-align: center;
         }
 
         .toast.show {
@@ -497,6 +595,9 @@
             .app-download-section .app-links .app-row .app-badge {
                 justify-content: center;
             }
+            .ios-message-section .msg-content .step {
+                font-size: 11px;
+            }
         }
     </style>
 </head>
@@ -510,39 +611,51 @@
             <p id="subText">اختر القناة ثم التطبيق المناسب</p>
         </div>
 
-        <!-- ===== تحميل التطبيقات ===== -->
-        <div class="app-download-section">
+        <!-- ===== تحميل التطبيقات (حسب الجهاز) ===== -->
+        <div class="app-download-section" id="appDownloadSection">
             <div class="app-title">
                 <span class="icon-small">📲</span>
                 تحميل التطبيقات المطلوبة
             </div>
-            <div class="app-links">
-                <!-- VLC - Android & iOS -->
-                <div class="app-row">
-                    <span class="app-name">
-                        <span class="app-icon">🎬</span>
-                        VLC Media Player
-                    </span>
-                    <span class="app-badge">
-                        <a href="https://play.google.com/store/apps/details?id=org.videolan.vlc" target="_blank" class="badge-link android">🤖 Android</a>
-                        <a href="https://apps.apple.com/sa/app/vlc-media-player/id650377962" target="_blank" class="badge-link ios">🍏 iPhone</a>
-                    </span>
-                </div>
-
-                <!-- MX Player - Android فقط -->
-                <div class="app-row">
-                    <span class="app-name">
-                        <span class="app-icon">▶️</span>
-                        MX Player
-                    </span>
-                    <span class="app-badge">
-                        <a href="https://play.google.com/store/apps/details?id=com.mxtech.videoplayer.ad" target="_blank" class="badge-link mx">🤖 Android</a>
-                        <span style="font-size:10px;color:var(--text-muted);padding:4px 8px;">📱 للأندرويد فقط</span>
-                    </span>
-                </div>
+            <div class="app-links" id="appLinksContainer">
+                <!-- سيتم تعبئتها بواسطة JavaScript حسب الجهاز -->
             </div>
-            <div class="app-hint">
-                <span class="emoji">💡</span> <strong>تنبيه:</strong> يجب تحميل التطبيق المناسب قبل تشغيل البث. عند الضغط على زر التشغيل سيتم توجيهك للتطبيق، وفي حال عدم وجوده سيتم فتح المتجر لتحميله.
+            <div class="app-hint" id="appHint">
+                <span class="emoji">💡</span> <strong>تنبيه:</strong> يجب تحميل التطبيق المناسب قبل تشغيل البث.
+            </div>
+        </div>
+
+        <!-- ===== رسالة خاصة لمستخدمي iPhone ===== -->
+        <div class="ios-message-section" id="iosMessageSection">
+            <div class="msg-title">
+                <span class="icon-msg">📱</span>
+                تعليمات لمستخدمي iPhone / iPad
+            </div>
+            <div class="msg-content">
+                <span class="step">
+                    <span class="num">1</span>
+                    بعد الضغط على زر <span class="highlight-btn">VLC</span>، ستظهر لك رسالة مثل الصورة أدناه.
+                </span>
+                <span class="step">
+                    <span class="num">2</span>
+                    اضغط على <span class="highlight">"Play"</span> لتشغيل البث مباشرة.
+                </span>
+                <span class="step">
+                    <span class="num">3</span>
+                    أو اضغط على <span class="highlight">"Always Play URLs"</span> لتشغيل البث تلقائياً في المستقبل.
+                </span>
+                <div class="screenshot-note">
+                    <span class="img-placeholder">📸</span>
+                    <div style="margin-top:4px;font-size:10px;color:var(--text-muted);">
+                        ستظهر لك هذه الرسالة:
+                        <div style="background:rgba(0,0,0,0.20);padding:6px 10px;border-radius:8px;margin-top:4px;font-family:monospace;font-size:10px;color:var(--text-secondary);">
+                            "Would you like to download or play this URL?"
+                        </div>
+                        <div style="margin-top:4px;">
+                            👆 اضغط على <span style="color:var(--gold-light);font-weight:700;">Play</span> أو <span style="color:var(--gold-light);font-weight:700;">Always Play URLs</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -621,124 +734,172 @@
 
         const device = getDeviceType();
 
-        // ===== إنشاء عناصر القنوات =====
-        const channelList = document.getElementById('channelList');
-
-        channels.forEach((channel, index) => {
-            const channelDiv = document.createElement('div');
-            channelDiv.className = 'channel-item';
-
-            // اسم القناة
-            const nameDiv = document.createElement('div');
-            nameDiv.className = 'channel-name';
-            nameDiv.innerHTML = `
-                <span class="flag">${channel.flag}</span>
-                <span class="name-text">${channel.name}</span>
-            `;
-
-            // أزرار التشغيل
-            const buttonsDiv = document.createElement('div');
-            buttonsDiv.className = 'channel-buttons';
+        // ===== عرض روابط التطبيقات حسب الجهاز =====
+        function renderAppLinks() {
+            const container = document.getElementById('appLinksContainer');
+            const hint = document.getElementById('appHint');
 
             if (device === 'ios') {
-                // زر VLC للآيفون
-                const btnVLC = document.createElement('a');
-                btnVLC.href = `vlc://${channel.url}`;
-                btnVLC.className = 'btn-small btn-ios-small';
-                btnVLC.innerHTML = `<span class="emoji">🎬</span> VLC <span class="platform-badge">🍏</span>`;
-                btnVLC.target = '_blank';
-                // إضافة محاولة فتح المتجر إذا لم يعمل التطبيق
-                btnVLC.onclick = function(e) {
-                    // محاولة فتح التطبيق، وإذا لم يعمل سيتم فتح المتجر
-                    const appUrl = this.href;
-                    const storeUrl = APP_LINKS.vlc.ios;
-                    // محاولة فتح التطبيق
-                    window.location.href = appUrl;
-                    // بعد 2 ثانية، إذا لم يتم فتح التطبيق، افتح المتجر
-                    setTimeout(() => {
-                        // نتحقق إذا كانت الصفحة لا زالت في الخلفية (التطبيق لم يفتح)
-                        // نستخدم تقنية الـ visibility change
-                    }, 2000);
-                    // نمنع الرابط من الفتح المباشر
-                    e.preventDefault();
-                    // نفتح المتجر كحل احتياطي
-                    setTimeout(() => {
-                        window.open(storeUrl, '_blank');
-                    }, 3000);
-                    showToast('📲 جاري فتح VLC... إذا لم يعمل، سيتم توجيهك للمتجر');
-                };
-                buttonsDiv.appendChild(btnVLC);
+                // عرض رابط VLC للايفون فقط
+                container.innerHTML = `
+                    <div class="app-row">
+                        <span class="app-name">
+                            <span class="app-icon">🎬</span>
+                            VLC Media Player
+                        </span>
+                        <span class="app-badge">
+                            <a href="${APP_LINKS.vlc.ios}" target="_blank" class="badge-link ios">🍏 iPhone</a>
+                        </span>
+                    </div>
+                `;
+                hint.innerHTML = `<span class="emoji">💡</span> <strong>تنبيه:</strong> يجب تحميل <strong>VLC</strong> من متجر التطبيقات قبل تشغيل البث.`;
+
+                // إظهار رسالة تعليمات iPhone
+                document.getElementById('iosMessageSection').classList.add('visible');
+
             } else if (device === 'android') {
-                // زر VLC للأندرويد
-                const btnVLC = document.createElement('a');
-                btnVLC.href = `intent://${channel.url.replace('http://', '')}#Intent;scheme=http;package=org.videolan.vlc;type=video/*;end`;
-                btnVLC.className = 'btn-small btn-vlc-small';
-                btnVLC.innerHTML = `<span class="emoji">🎬</span> VLC <span class="platform-badge">🤖</span>`;
-                btnVLC.onclick = function(e) {
-                    const appUrl = this.href;
-                    const storeUrl = APP_LINKS.vlc.android;
-                    // محاولة فتح التطبيق
-                    window.location.href = appUrl;
-                    // بعد 2 ثانية، افتح المتجر كحل احتياطي
-                    setTimeout(() => {
-                        window.open(storeUrl, '_blank');
-                    }, 3000);
-                    e.preventDefault();
-                    showToast('📲 جاري فتح VLC... إذا لم يعمل، سيتم توجيهك للمتجر');
-                };
-                buttonsDiv.appendChild(btnVLC);
+                // عرض روابط VLC و MX للاندرويد
+                container.innerHTML = `
+                    <div class="app-row">
+                        <span class="app-name">
+                            <span class="app-icon">🎬</span>
+                            VLC Media Player
+                        </span>
+                        <span class="app-badge">
+                            <a href="${APP_LINKS.vlc.android}" target="_blank" class="badge-link android">🤖 Android</a>
+                        </span>
+                    </div>
+                    <div class="app-row">
+                        <span class="app-name">
+                            <span class="app-icon">▶️</span>
+                            MX Player
+                        </span>
+                        <span class="app-badge">
+                            <a href="${APP_LINKS.mx.android}" target="_blank" class="badge-link mx">🤖 Android</a>
+                        </span>
+                    </div>
+                `;
+                hint.innerHTML = `<span class="emoji">💡</span> <strong>تنبيه:</strong> يمكنك استخدام <strong>VLC</strong> أو <strong>MX Player</strong>. قم بتحميل أحدهما من متجر جوجل.`;
 
-                // زر MX Player
-                const btnMX = document.createElement('a');
-                btnMX.href = `intent://${channel.url.replace('http://', '')}#Intent;scheme=http;package=com.mxtech.videoplayer.ad;type=video/*;end`;
-                btnMX.className = 'btn-small btn-mx-small';
-                btnMX.innerHTML = `<span class="emoji">▶️</span> MX <span class="platform-badge">🤖</span>`;
-                btnMX.onclick = function(e) {
-                    const appUrl = this.href;
-                    const storeUrl = APP_LINKS.mx.android;
-                    window.location.href = appUrl;
-                    setTimeout(() => {
-                        window.open(storeUrl, '_blank');
-                    }, 3000);
-                    e.preventDefault();
-                    showToast('📲 جاري فتح MX Player... إذا لم يعمل، سيتم توجيهك للمتجر');
-                };
-                buttonsDiv.appendChild(btnMX);
+                // إخفاء رسالة iPhone
+                document.getElementById('iosMessageSection').classList.remove('visible');
+
             } else {
-                // للأجهزة الأخرى - عرض روابط التحميل فقط
-                const btnVLC = document.createElement('a');
-                btnVLC.href = APP_LINKS.vlc.android;
-                btnVLC.target = '_blank';
-                btnVLC.className = 'btn-small btn-vlc-small';
-                btnVLC.innerHTML = `<span class="emoji">📲</span> تحميل VLC`;
-                buttonsDiv.appendChild(btnVLC);
-
-                const btnMX = document.createElement('a');
-                btnMX.href = APP_LINKS.mx.android;
-                btnMX.target = '_blank';
-                btnMX.className = 'btn-small btn-mx-small';
-                btnMX.innerHTML = `<span class="emoji">📲</span> تحميل MX`;
-                buttonsDiv.appendChild(btnMX);
+                // أجهزة أخرى
+                container.innerHTML = `
+                    <div class="app-row">
+                        <span class="app-name">
+                            <span class="app-icon">🎬</span>
+                            VLC Media Player
+                        </span>
+                        <span class="app-badge">
+                            <a href="${APP_LINKS.vlc.android}" target="_blank" class="badge-link android">📲 تحميل</a>
+                        </span>
+                    </div>
+                `;
+                hint.innerHTML = `<span class="emoji">💡</span> قم بتحميل <strong>VLC</strong> لتشغيل البث.`;
+                document.getElementById('iosMessageSection').classList.remove('visible');
             }
+        }
 
-            channelDiv.appendChild(nameDiv);
-            channelDiv.appendChild(buttonsDiv);
-            channelList.appendChild(channelDiv);
-        });
+        // ===== إنشاء عناصر القنوات =====
+        function renderChannels() {
+            const channelList = document.getElementById('channelList');
+            channelList.innerHTML = '';
+
+            channels.forEach((channel) => {
+                const channelDiv = document.createElement('div');
+                channelDiv.className = 'channel-item';
+
+                // اسم القناة
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'channel-name';
+                nameDiv.innerHTML = `
+                    <span class="flag">${channel.flag}</span>
+                    <span class="name-text">${channel.name}</span>
+                `;
+
+                // أزرار التشغيل
+                const buttonsDiv = document.createElement('div');
+                buttonsDiv.className = 'channel-buttons';
+
+                if (device === 'ios') {
+                    // زر VLC للآيفون فقط
+                    const btnVLC = document.createElement('a');
+                    btnVLC.href = `vlc://${channel.url}`;
+                    btnVLC.className = 'btn-small btn-ios-small';
+                    btnVLC.innerHTML = `<span class="emoji">🎬</span> VLC <span class="platform-badge">🍏</span>`;
+                    btnVLC.target = '_blank';
+                    btnVLC.onclick = function(e) {
+                        e.preventDefault();
+                        // محاولة فتح التطبيق
+                        window.location.href = this.href;
+                        showToast('📲 جاري فتح VLC... اضغط "Play" أو "Always Play URLs" عند ظهور الرسالة');
+                    };
+                    buttonsDiv.appendChild(btnVLC);
+
+                } else if (device === 'android') {
+                    // زر VLC للأندرويد
+                    const btnVLC = document.createElement('a');
+                    btnVLC.href = `intent://${channel.url.replace('http://', '')}#Intent;scheme=http;package=org.videolan.vlc;type=video/*;end`;
+                    btnVLC.className = 'btn-small btn-vlc-small';
+                    btnVLC.innerHTML = `<span class="emoji">🎬</span> VLC <span class="platform-badge">🤖</span>`;
+                    btnVLC.onclick = function(e) {
+                        e.preventDefault();
+                        window.location.href = this.href;
+                        setTimeout(() => {
+                            window.open(APP_LINKS.vlc.android, '_blank');
+                        }, 3000);
+                        showToast('📲 جاري فتح VLC...');
+                    };
+                    buttonsDiv.appendChild(btnVLC);
+
+                    // زر MX Player
+                    const btnMX = document.createElement('a');
+                    btnMX.href = `intent://${channel.url.replace('http://', '')}#Intent;scheme=http;package=com.mxtech.videoplayer.ad;type=video/*;end`;
+                    btnMX.className = 'btn-small btn-mx-small';
+                    btnMX.innerHTML = `<span class="emoji">▶️</span> MX <span class="platform-badge">🤖</span>`;
+                    btnMX.onclick = function(e) {
+                        e.preventDefault();
+                        window.location.href = this.href;
+                        setTimeout(() => {
+                            window.open(APP_LINKS.mx.android, '_blank');
+                        }, 3000);
+                        showToast('📲 جاري فتح MX Player...');
+                    };
+                    buttonsDiv.appendChild(btnMX);
+
+                } else {
+                    // أجهزة أخرى - عرض روابط تحميل فقط
+                    const btnDownload = document.createElement('a');
+                    btnDownload.href = APP_LINKS.vlc.android;
+                    btnDownload.target = '_blank';
+                    btnDownload.className = 'btn-small btn-vlc-small';
+                    btnDownload.innerHTML = `<span class="emoji">📲</span> تحميل VLC`;
+                    buttonsDiv.appendChild(btnDownload);
+                }
+
+                channelDiv.appendChild(nameDiv);
+                channelDiv.appendChild(buttonsDiv);
+                channelList.appendChild(channelDiv);
+            });
+        }
 
         // ===== تحديث النص السفلي =====
-        const note = document.getElementById('deviceNote');
-        const subText = document.getElementById('subText');
+        function updateNote() {
+            const note = document.getElementById('deviceNote');
+            const subText = document.getElementById('subText');
 
-        if (device === 'ios') {
-            note.innerHTML = '🍏 <strong>iPhone/iPad:</strong> استخدم زر <strong>VLC</strong> لكل قناة';
-            subText.textContent = 'اختر القناة واضغط على VLC';
-        } else if (device === 'android') {
-            note.innerHTML = '🤖 <strong>Android:</strong> استخدم <strong>VLC</strong> أو <strong>MX Player</strong>';
-            subText.textContent = 'اختر القناة والتطبيق المناسب';
-        } else {
-            note.innerHTML = '💡 استخدم <strong>VLC</strong> أو <strong>MX Player</strong>';
-            subText.textContent = 'اختر القناة للبدء';
+            if (device === 'ios') {
+                note.innerHTML = '🍏 <strong>iPhone/iPad:</strong> استخدم زر <strong>VLC</strong> لكل قناة';
+                subText.textContent = 'اختر القناة واضغط على VLC';
+            } else if (device === 'android') {
+                note.innerHTML = '🤖 <strong>Android:</strong> استخدم <strong>VLC</strong> أو <strong>MX Player</strong>';
+                subText.textContent = 'اختر القناة والتطبيق المناسب';
+            } else {
+                note.innerHTML = '💡 استخدم <strong>VLC</strong> أو <strong>MX Player</strong>';
+                subText.textContent = 'اختر القناة للبدء';
+            }
         }
 
         // ===== دالة الإشعار =====
@@ -746,7 +907,8 @@
             const t = document.getElementById('toast');
             t.textContent = msg;
             t.classList.add('show');
-            setTimeout(() => t.classList.remove('show'), 4000);
+            clearTimeout(t._timeout);
+            t._timeout = setTimeout(() => t.classList.remove('show'), 5000);
         }
 
         // ===== Footer Click =====
@@ -754,10 +916,15 @@
             showToast('📺 IPTV Player | قنوات بي إن');
         });
 
+        // ===== التهيئة =====
+        renderAppLinks();
+        renderChannels();
+        updateNote();
+
         console.log('📺 IPTV Player - قنوات بي إن');
         console.log(`📡 تم تحميل ${channels.length} قناة`);
-        console.log('📱 يعمل على iPhone و Android');
-        console.log('📲 روابط التطبيقات:', APP_LINKS);
+        console.log(`📱 الجهاز: ${device}`);
+        console.log('📲 روابط التطبيقات متاحة حسب الجهاز');
     </script>
 
 </body>
