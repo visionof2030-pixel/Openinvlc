@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>📺 IPTV Player</title>
+    <title>📺 IPTV Player - قنوات بي إن</title>
     <style>
         * {
             margin: 0;
@@ -23,7 +23,7 @@
             background: #111;
             padding: 30px 25px;
             border-radius: 24px;
-            max-width: 420px;
+            max-width: 480px;
             width: 100%;
             border: 1px solid #2a2a2a;
             box-shadow: 0 20px 60px rgba(255, 136, 0, 0.08);
@@ -62,61 +62,75 @@
             font-size: 13px;
             margin-top: 6px;
         }
-        .btn-group {
+        .channel-list {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             margin-top: 15px;
         }
-        .btn {
+        .channel-item {
+            background: #1a1a1a;
+            border-radius: 14px;
+            padding: 12px 16px;
+            border: 1px solid #2a2a2a;
+            transition: all 0.3s;
+        }
+        .channel-item:active {
+            transform: scale(0.97);
+            border-color: #00ff88;
+        }
+        .channel-name {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: right;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 16px;
-            border-radius: 14px;
-            font-size: 18px;
-            font-weight: 700;
+            justify-content: space-between;
+        }
+        .channel-name .flag {
+            font-size: 20px;
+        }
+        .channel-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .btn-small {
+            flex: 1;
+            min-width: 80px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
             border: none;
             cursor: pointer;
-            width: 100%;
             color: #fff;
-            transition: all 0.2s;
             text-decoration: none;
+            text-align: center;
+            transition: all 0.2s;
         }
-        .btn:active {
-            transform: scale(0.96);
+        .btn-small:active {
+            transform: scale(0.95);
         }
-        .btn .emoji {
-            font-size: 24px;
-        }
-        .btn-vlc {
+        .btn-vlc-small {
             background: linear-gradient(145deg, #ff8800, #e67600);
-            box-shadow: 0 4px 20px rgba(255, 136, 0, 0.3);
         }
-        .btn-vlc:active {
-            box-shadow: 0 2px 10px rgba(255, 136, 0, 0.5);
-        }
-        .btn-mx {
+        .btn-mx-small {
             background: linear-gradient(145deg, #e74c3c, #c0392b);
-            box-shadow: 0 4px 20px rgba(231, 76, 60, 0.25);
         }
-        .btn-mx:active {
-            box-shadow: 0 2px 10px rgba(231, 76, 60, 0.4);
-        }
-        .btn-ios-vlc {
+        .btn-ios-small {
             background: linear-gradient(145deg, #ff6b6b, #ee5a24);
-            box-shadow: 0 4px 20px rgba(238, 90, 36, 0.25);
-            border: 1px solid #ff8800;
         }
-        .btn-ios-vlc:active {
-            box-shadow: 0 2px 10px rgba(238, 90, 36, 0.4);
+        .btn-small .emoji {
+            font-size: 14px;
         }
         .divider {
             display: flex;
             align-items: center;
             gap: 12px;
-            margin: 6px 0 4px;
+            margin: 10px 0 8px;
         }
         .divider::before,
         .divider::after {
@@ -172,17 +186,21 @@
         }
         .platform-badge {
             display: inline-block;
-            font-size: 9px;
+            font-size: 8px;
             background: #222;
-            padding: 2px 10px;
-            border-radius: 10px;
+            padding: 2px 8px;
+            border-radius: 8px;
             color: #666;
-            margin-left: 6px;
+            margin-left: 4px;
         }
         @media (max-width: 400px) {
-            .btn {
-                font-size: 16px;
-                padding: 14px;
+            .channel-name {
+                font-size: 14px;
+            }
+            .btn-small {
+                font-size: 10px;
+                padding: 6px 8px;
+                min-width: 60px;
             }
         }
     </style>
@@ -192,53 +210,64 @@
     <div class="container">
         <div class="header">
             <span class="icon">📡</span>
-            <h1>IPTV Live</h1>
+            <h1>قنوات بي إن</h1>
             <span class="badge">● LIVE</span>
-            <p id="subText">اختر التطبيق لفتح البث</p>
+            <p id="subText">اختر القناة ثم التطبيق المناسب</p>
         </div>
 
-        <div class="btn-group">
-
-            <!-- ===== VLC (Android) ===== -->
-            <a href="intent://mavpro.xyz:8080/live/8454745cdsdw/8455144xsfdd/405509.M3U8#Intent;scheme=http;package=org.videolan.vlc;type=video/*;end" class="btn btn-vlc" id="btnVLCAndroid">
-                <span class="emoji">🎬</span>
-                فتح في VLC (Android)
-                <span class="platform-badge">🤖</span>
-            </a>
-
-            <!-- ===== VLC (iPhone) ===== -->
-            <a href="vlc://http://mavpro.xyz:8080/live/8454745cdsdw/8455144xsfdd/405509.M3U8" class="btn btn-ios-vlc" id="btnVLCiOS">
-                <span class="emoji">🎬</span>
-                فتح في VLC (iPhone)
-                <span class="platform-badge">🍏</span>
-            </a>
-
-            <!-- ===== MX Player (Android) ===== -->
-            <a href="intent://mavpro.xyz:8080/live/8454745cdsdw/8455144xsfdd/405509.M3U8#Intent;scheme=http;package=com.mxtech.videoplayer.ad;type=video/*;end" class="btn btn-mx" id="btnMX">
-                <span class="emoji">▶️</span>
-                فتح في MX Player
-                <span class="platform-badge">🤖</span>
-            </a>
-
-            <div class="divider"><span>📌 ملاحظة</span></div>
-
-            <p style="color:#666;font-size:12px;margin:5px 0;">
-                🔹 اختر التطبيق المناسب لنظام تشغيل جهازك<br>
-                🔹 إذا لم يعمل، تأكد من تثبيت التطبيق أولاً
-            </p>
-
+        <div class="channel-list" id="channelList">
+            <!-- سيتم إنشاء القنوات بواسطة JavaScript -->
         </div>
+
+        <div class="divider"><span>📌 ملاحظة</span></div>
+
+        <p style="color:#666;font-size:12px;margin:5px 0;">
+            🔹 اختر القناة ثم التطبيق المناسب لجهازك<br>
+            🔹 تأكد من تثبيت التطبيق أولاً
+        </p>
 
         <p class="note" id="deviceNote">
             💡 اختر التطبيق المناسب لجهازك
         </p>
-        <div class="footer">⚡ IPTV Proxy | يعمل على iPhone و Android</div>
+        <div class="footer">⚡ IPTV | يعمل على iPhone و Android</div>
     </div>
 
     <div id="toast" class="toast">✅ جاري الفتح...</div>
 
     <script>
-        const STREAM_URL = "http://mavpro.xyz:8080/live/8454745cdsdw/8455144xsfdd/405509.M3U8";
+        // ===== قائمة القنوات =====
+        const channels = [
+            {
+                name: "Bein 1 HD",
+                flag: "⚽",
+                url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/460862.ts"
+            },
+            {
+                name: "Bein 2 HD",
+                flag: "⚽",
+                url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/460865.ts"
+            },
+            {
+                name: "Bein 3 HD",
+                flag: "⚽",
+                url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/460868.ts"
+            },
+            {
+                name: "Bein 4 HD",
+                flag: "⚽",
+                url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/460871.ts"
+            },
+            {
+                name: "ALWAN 1 4K",
+                flag: "📺",
+                url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/418111.ts"
+            },
+            {
+                name: "Alwan 2 4K",
+                flag: "📺",
+                url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/418114.ts"
+            }
+        ];
 
         // ===== كشف نوع الجهاز =====
         function getDeviceType() {
@@ -250,39 +279,79 @@
 
         const device = getDeviceType();
 
-        // ===== عرض الأزرار المناسبة للجهاز =====
+        // ===== إنشاء عناصر القنوات =====
+        const channelList = document.getElementById('channelList');
+
+        channels.forEach((channel, index) => {
+            const channelDiv = document.createElement('div');
+            channelDiv.className = 'channel-item';
+
+            // اسم القناة
+            const nameDiv = document.createElement('div');
+            nameDiv.className = 'channel-name';
+            nameDiv.innerHTML = `
+                <span class="flag">${channel.flag}</span>
+                <span>${channel.name}</span>
+            `;
+
+            // أزرار التشغيل
+            const buttonsDiv = document.createElement('div');
+            buttonsDiv.className = 'channel-buttons';
+
+            if (device === 'ios') {
+                // زر VLC للآيفون
+                const btnVLC = document.createElement('a');
+                btnVLC.href = `vlc://${channel.url}`;
+                btnVLC.className = 'btn-small btn-ios-small';
+                btnVLC.innerHTML = `<span class="emoji">🎬</span> VLC <span class="platform-badge">🍏</span>`;
+                buttonsDiv.appendChild(btnVLC);
+            } else if (device === 'android') {
+                // زر VLC للأندرويد
+                const btnVLC = document.createElement('a');
+                btnVLC.href = `intent://${channel.url.replace('http://', '')}#Intent;scheme=http;package=org.videolan.vlc;type=video/*;end`;
+                btnVLC.className = 'btn-small btn-vlc-small';
+                btnVLC.innerHTML = `<span class="emoji">🎬</span> VLC <span class="platform-badge">🤖</span>`;
+                buttonsDiv.appendChild(btnVLC);
+
+                // زر MX Player
+                const btnMX = document.createElement('a');
+                btnMX.href = `intent://${channel.url.replace('http://', '')}#Intent;scheme=http;package=com.mxtech.videoplayer.ad;type=video/*;end`;
+                btnMX.className = 'btn-small btn-mx-small';
+                btnMX.innerHTML = `<span class="emoji">▶️</span> MX <span class="platform-badge">🤖</span>`;
+                buttonsDiv.appendChild(btnMX);
+            } else {
+                // للأجهزة الأخرى
+                const btnVLC = document.createElement('a');
+                btnVLC.href = channel.url;
+                btnVLC.target = '_blank';
+                btnVLC.className = 'btn-small btn-vlc-small';
+                btnVLC.innerHTML = `<span class="emoji">🎬</span> فتح`;
+                buttonsDiv.appendChild(btnVLC);
+            }
+
+            channelDiv.appendChild(nameDiv);
+            channelDiv.appendChild(buttonsDiv);
+            channelList.appendChild(channelDiv);
+        });
+
+        // ===== تحديث النص السفلي =====
         const note = document.getElementById('deviceNote');
         const subText = document.getElementById('subText');
 
         if (device === 'ios') {
-            // إخفاء أزرار Android
-            document.getElementById('btnVLCAndroid').style.display = 'none';
-            document.getElementById('btnMX').style.display = 'none';
-            document.querySelector('.divider').style.display = 'none';
-            note.innerHTML = '🍏 <strong>iPhone/iPad:</strong> استخدم زر <strong>VLC (iPhone)</strong>';
-            subText.textContent = 'اضغط الزر لفتح البث في VLC';
+            note.innerHTML = '🍏 <strong>iPhone/iPad:</strong> استخدم زر <strong>VLC</strong> لكل قناة';
+            subText.textContent = 'اختر القناة واضغط على VLC';
         } else if (device === 'android') {
-            // إخفاء زر iPhone
-            document.getElementById('btnVLCiOS').style.display = 'none';
             note.innerHTML = '🤖 <strong>Android:</strong> استخدم <strong>VLC</strong> أو <strong>MX Player</strong>';
-            subText.textContent = 'اختر التطبيق لفتح البث';
+            subText.textContent = 'اختر القناة والتطبيق المناسب';
         } else {
             note.innerHTML = '💡 استخدم <strong>VLC</strong> أو <strong>MX Player</strong>';
-            subText.textContent = 'اختر التطبيق لفتح البث';
+            subText.textContent = 'اختر القناة للبدء';
         }
 
-        // ===== دالة الإشعار =====
-        function showToast(msg) {
-            const t = document.getElementById('toast');
-            t.textContent = msg;
-            t.classList.add('show');
-            setTimeout(() => t.classList.remove('show'), 3000);
-        }
-
-        console.log('📺 IPTV Player');
+        console.log('📺 IPTV Player - قنوات بي إن');
+        console.log(`📡 تم تحميل ${channels.length} قناة`);
         console.log('📱 يعمل على iPhone و Android');
-        console.log('🎬 VLC + MX Player');
-        console.log('📡 الرابط الجديد:', STREAM_URL);
     </script>
 
 </body>
