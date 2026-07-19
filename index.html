@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>📺 IPTV Player - قنوات بي إن</title>
+    <title>📺 IPTV Player - قنوات بي إن ماكس</title>
     <style>
         /* ============================================================
            ROOT & RESET (WORLD CUP STYLE)
@@ -175,7 +175,7 @@
         .app-download-section .app-links {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
 
         .app-download-section .app-links .app-row {
@@ -183,9 +183,9 @@
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 10px;
             background: rgba(255, 255, 255, 0.02);
-            padding: 8px 14px;
+            padding: 10px 16px;
             border-radius: var(--radius-sm);
             border: 1px solid var(--border-subtle);
             transition: var(--transition);
@@ -198,14 +198,44 @@
 
         .app-download-section .app-links .app-row .app-name {
             font-weight: 700;
-            font-size: 13px;
+            font-size: 14px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 12px;
         }
 
-        .app-download-section .app-links .app-row .app-name .app-icon {
-            font-size: 18px;
+        .app-download-section .app-links .app-row .app-name .app-icon-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.30);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .app-download-section .app-links .app-row .app-name .app-icon-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(212, 167, 69, 0.20);
+        }
+
+        .app-download-section .app-links .app-row .app-name .app-label {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+        }
+
+        .app-download-section .app-links .app-row .app-name .app-label .app-title-text {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .app-download-section .app-links .app-row .app-name .app-label .app-sub {
+            font-size: 10px;
+            color: var(--text-muted);
+            font-weight: 400;
         }
 
         .app-download-section .app-links .app-row .app-badge {
@@ -218,7 +248,7 @@
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 40px;
             font-size: 10px;
             font-weight: 700;
@@ -260,6 +290,81 @@
             transform: translateY(-2px);
         }
 
+        /* ===== زر تحميل المشغل ===== */
+        .download-now-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px 20px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 60px;
+            background: var(--gold-gradient);
+            color: #0a0e1a;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            box-shadow: 0 4px 20px rgba(212, 167, 69, 0.25);
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .download-now-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 40px rgba(212, 167, 69, 0.35);
+        }
+
+        .download-now-btn:active {
+            transform: scale(0.97);
+        }
+
+        .download-now-btn .btn-icon {
+            font-size: 22px;
+        }
+
+        .download-now-btn .btn-arrow {
+            font-size: 18px;
+            transition: var(--transition);
+        }
+
+        .download-now-btn:hover .btn-arrow {
+            transform: translateX(5px);
+        }
+
+        .download-now-btn.android-btn {
+            background: linear-gradient(135deg, #34a853, #1a8d3d);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(52, 168, 83, 0.25);
+        }
+
+        .download-now-btn.android-btn:hover {
+            box-shadow: 0 8px 40px rgba(52, 168, 83, 0.35);
+        }
+
+        .download-now-btn.ios-btn {
+            background: linear-gradient(135deg, #007aff, #0055cc);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(0, 122, 255, 0.25);
+        }
+
+        .download-now-btn.ios-btn:hover {
+            box-shadow: 0 8px 40px rgba(0, 122, 255, 0.35);
+        }
+
+        .download-now-btn.mx-btn {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(231, 76, 60, 0.25);
+        }
+
+        .download-now-btn.mx-btn:hover {
+            box-shadow: 0 8px 40px rgba(231, 76, 60, 0.35);
+        }
+
         .app-download-section .app-hint {
             font-size: 11px;
             color: var(--text-secondary);
@@ -278,7 +383,7 @@
             font-size: 14px;
         }
 
-        /* ===== IOS MESSAGE SECTION (خاصة للايفون) ===== */
+        /* ===== IOS MESSAGE SECTION ===== */
         .ios-message-section {
             display: none;
             background: var(--ios-message-bg);
@@ -291,6 +396,12 @@
 
         .ios-message-section.visible {
             display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .ios-message-section .msg-title {
@@ -320,25 +431,38 @@
         }
 
         .ios-message-section .msg-content .step {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
             padding: 4px 0;
         }
 
         .ios-message-section .msg-content .step .num {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             background: var(--gold-gradient);
             color: #0a0e1a;
+            min-width: 22px;
             width: 22px;
             height: 22px;
             border-radius: 50%;
-            text-align: center;
             font-weight: 800;
             font-size: 11px;
             line-height: 22px;
-            margin-left: 10px;
+            flex-shrink: 0;
+            order: 0;
         }
 
-        .ios-message-section .msg-content .step .highlight-btn {
+        .ios-message-section .msg-content .step .step-text {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .ios-message-section .msg-content .step .step-text .highlight-btn {
             display: inline-block;
             background: var(--gold-glow);
             border: 1px solid var(--border-gold);
@@ -349,7 +473,6 @@
             font-size: 12px;
         }
 
-        /* ===== صورة الشرح ===== */
         .ios-screenshot-wrapper {
             margin: 12px 0 8px;
             text-align: center;
@@ -435,6 +558,38 @@
             color: var(--gold-light);
         }
 
+        /* ===== زر عرض المشكلة ===== */
+        .show-issue-btn {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            margin-top: 8px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border-gold);
+            border-radius: 40px;
+            background: rgba(212, 167, 69, 0.06);
+            color: var(--gold-light);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .show-issue-btn:hover {
+            background: var(--gold-glow);
+            transform: translateY(-2px);
+        }
+
+        .show-issue-btn .btn-emoji {
+            font-size: 16px;
+        }
+
+        .show-issue-btn.visible {
+            display: inline-flex;
+        }
+
         /* ===== CHANNEL LIST ===== */
         .channel-list {
             display: flex;
@@ -484,10 +639,6 @@
             gap: 8px;
         }
 
-        .channel-name .name-text .gold-text {
-            color: var(--gold-light);
-        }
-
         .channel-buttons {
             display: flex;
             gap: 8px;
@@ -509,6 +660,11 @@
             transition: var(--transition);
             font-family: inherit;
             box-shadow: 0 4px 20px rgba(255, 136, 0, 0.10);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--gold-gradient);
         }
 
         .btn-small:active {
@@ -519,13 +675,20 @@
             transform: translateY(-2px);
         }
 
+        .btn-small .btn-icon-img {
+            width: 22px;
+            height: 22px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
         .btn-vlc-small {
-            background: var(--gold-gradient);
-            box-shadow: 0 4px 20px rgba(212, 167, 69, 0.20);
+            background: linear-gradient(145deg, #ff8800, #e67600);
+            box-shadow: 0 4px 20px rgba(255, 136, 0, 0.20);
         }
 
         .btn-vlc-small:hover {
-            box-shadow: 0 8px 32px rgba(212, 167, 69, 0.30);
+            box-shadow: 0 8px 32px rgba(255, 136, 0, 0.30);
         }
 
         .btn-mx-small {
@@ -644,6 +807,10 @@
                 padding: 8px 10px;
                 min-width: 60px;
             }
+            .btn-small .btn-icon-img {
+                width: 18px;
+                height: 18px;
+            }
             .container {
                 padding: 20px 16px;
             }
@@ -658,11 +825,21 @@
             .app-download-section .app-links .app-row .app-badge {
                 justify-content: center;
             }
+            .app-download-section .app-links .app-row .app-name {
+                justify-content: center;
+            }
+            .app-download-section .app-links .app-row .app-name .app-label {
+                align-items: center;
+            }
             .ios-message-section .msg-content .step {
                 font-size: 12px;
             }
             .ios-screenshot-wrapper {
                 padding: 6px;
+            }
+            .download-now-btn {
+                font-size: 14px;
+                padding: 12px 16px;
             }
         }
     </style>
@@ -672,12 +849,12 @@
     <div class="container">
         <div class="header">
             <span class="icon">📡</span>
-            <h1>قنوات بي إن</h1>
+            <h1>قنوات بي إن ماكس</h1>
             <span class="badge">● LIVE</span>
             <p id="subText">اختر القناة ثم التطبيق المناسب</p>
         </div>
 
-        <!-- ===== تحميل التطبيقات (حسب الجهاز) ===== -->
+        <!-- ===== تحميل التطبيقات ===== -->
         <div class="app-download-section" id="appDownloadSection">
             <div class="app-title">
                 <span class="icon-small">📲</span>
@@ -686,57 +863,80 @@
             <div class="app-links" id="appLinksContainer">
                 <!-- سيتم تعبئتها بواسطة JavaScript حسب الجهاز -->
             </div>
+
+            <!-- ===== زر تحميل المشغل ===== -->
+            <a href="#" id="downloadNowBtn" class="download-now-btn" target="_blank">
+                <span class="btn-icon">⬇️</span>
+                تنزيل المشغل الآن
+                <span class="btn-arrow">→</span>
+            </a>
+
             <div class="app-hint" id="appHint">
                 <span class="emoji">💡</span> <strong>تنبيه:</strong> يجب تحميل التطبيق المناسب قبل تشغيل البث.
             </div>
         </div>
 
-        <!-- ===== رسالة خاصة لمستخدمي iPhone مع الصورة ===== -->
-        <div class="ios-message-section" id="iosMessageSection">
-            <div class="msg-title">
-                <span class="icon-msg">📱</span>
-                تعليمات لمستخدمي iPhone / iPad
-            </div>
-            <div class="msg-content">
-                <span class="step">
-                    <span class="num">1</span>
-                    بعد الضغط على زر <span class="highlight-btn">VLC</span>، ستظهر لك رسالة مثل الصورة أدناه.
-                </span>
-                <span class="step">
-                    <span class="num">2</span>
-                    اضغط على <span class="highlight">"Play"</span> لتشغيل البث مباشرة.
-                </span>
-                <span class="step">
-                    <span class="num">3</span>
-                    أو اضغط على <span class="highlight">"Always Play URLs"</span> لتشغيل البث تلقائياً في المستقبل.
-                </span>
+        <!-- ===== زر عرض المشكلة + رسالة iPhone ===== -->
+        <div id="iosMessageWrapper">
+            <button class="show-issue-btn" id="showIssueBtn" onclick="toggleIosMessage()">
+                <span class="btn-emoji">📱</span>
+                خطوات عمل المشغل للآيفون
+                <span id="toggleIcon">▼</span>
+            </button>
 
-                <!-- ===== صورة الشرح ===== -->
-                <div class="ios-screenshot-wrapper">
-                    <div class="screenshot-label">
-                        <span class="arrow-icon">👇</span>
-                        <span>الرسالة التي ستظهر لك</span>
-                    </div>
-                    <a href="https://ibb.co/Pz3sY6yD" target="_blank">
-                        <img src="https://i.ibb.co/YTY4WLS0/IMG-4278.png" alt="شرح تشغيل البث على iPhone" border="0" loading="lazy" />
-                    </a>
-                    <div class="img-credit">
-                        <a href="https://imgbb.com/" target="_blank">📸 اضغط لتكبير الصورة</a>
-                    </div>
+            <!-- ===== رسالة خاصة لمستخدمي iPhone مع الصورة ===== -->
+            <div class="ios-message-section" id="iosMessageSection">
+                <div class="msg-title">
+                    <span class="icon-msg">📱</span>
+                    خطوات عمل المشغل للآيفون
                 </div>
-
-                <div class="screenshot-note">
-                    📌 ستظهر لك هذه الرسالة:
-                    <div style="background:rgba(0,0,0,0.20);padding:8px 12px;border-radius:8px;margin-top:6px;font-family:monospace;font-size:11px;color:var(--text-secondary);direction:ltr;text-align:center;">
-                        "Would you like to download or play this URL?"
+                <div class="msg-content">
+                    <div class="step">
+                        <span class="num">1</span>
+                        <span class="step-text">
+                            بعد الضغط على زر <span class="highlight-btn">VLC</span>، ستظهر لك رسالة مثل الصورة أدناه.
+                        </span>
                     </div>
-                    <div style="margin-top:6px;">
-                        👆 اضغط على <span class="highlight-play">"Play"</span> أو <span class="highlight-always">"Always Play URLs"</span>
+                    <div class="step">
+                        <span class="num">2</span>
+                        <span class="step-text">
+                            اضغط على <span class="highlight">"Play"</span> لتشغيل البث مباشرة.
+                        </span>
                     </div>
-                </div>
+                    <div class="step">
+                        <span class="num">3</span>
+                        <span class="step-text">
+                            أو اضغط على <span class="highlight">"Always Play URLs"</span> لتشغيل البث تلقائياً في المستقبل.
+                        </span>
+                    </div>
 
-                <div class="final-note">
-                    ✅ <strong>نصيحة:</strong> اضغط على <strong>"Always Play URLs"</strong> لتشغيل جميع البثوث تلقائياً في المستقبل دون الحاجة للضغط على Play في كل مرة.
+                    <!-- ===== صورة الشرح ===== -->
+                    <div class="ios-screenshot-wrapper">
+                        <div class="screenshot-label">
+                            <span class="arrow-icon">👇</span>
+                            <span>الرسالة التي ستظهر لك</span>
+                        </div>
+                        <a href="https://ibb.co/Pz3sY6yD" target="_blank">
+                            <img src="https://i.ibb.co/YTY4WLS0/IMG-4278.png" alt="شرح تشغيل البث على iPhone" border="0" loading="lazy" />
+                        </a>
+                        <div class="img-credit">
+                            <a href="https://imgbb.com/" target="_blank">📸 اضغط لتكبير الصورة</a>
+                        </div>
+                    </div>
+
+                    <div class="screenshot-note">
+                        📌 ستظهر لك هذه الرسالة:
+                        <div style="background:rgba(0,0,0,0.20);padding:8px 12px;border-radius:8px;margin-top:6px;font-family:monospace;font-size:11px;color:var(--text-secondary);direction:ltr;text-align:center;">
+                            "Would you like to download or play this URL?"
+                        </div>
+                        <div style="margin-top:6px;">
+                            👆 اضغط على <span class="highlight-play">"Play"</span> أو <span class="highlight-always">"Always Play URLs"</span>
+                        </div>
+                    </div>
+
+                    <div class="final-note">
+                        ✅ <strong>نصيحة:</strong> اضغط على <strong>"Always Play URLs"</strong> لتشغيل جميع البثوث تلقائياً في المستقبل دون الحاجة للضغط على Play في كل مرة.
+                    </div>
                 </div>
             </div>
         </div>
@@ -761,25 +961,31 @@
     <div id="toast" class="toast">✅ جاري الفتح...</div>
 
     <script>
+        // ===== أيقونات التطبيقات =====
+        const APP_ICONS = {
+            vlc: "https://i.ibb.co/xKbLhXTx/FB62-A254-E0-D0-4900-B7-E0-62501661-F5-C8.png",
+            mx: "https://i.ibb.co/tpWSsYvQ/928-DE876-714-A-489-F-B008-4-CB6-A1-ED524-A.png"
+        };
+
         // ===== قائمة القنوات =====
         const channels = [
             {
-                name: "Bein 1 HD",
+                name: "Bein Max 1 HD",
                 flag: "⚽",
                 url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/460862.ts"
             },
             {
-                name: "Bein 2 HD",
+                name: "Bein Max 2 HD",
                 flag: "⚽",
                 url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/460865.ts"
             },
             {
-                name: "Bein 3 HD",
+                name: "Bein Max 3 HD",
                 flag: "⚽",
                 url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/460868.ts"
             },
             {
-                name: "Bein 4 HD",
+                name: "Bein Max 4 HD",
                 flag: "⚽",
                 url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/460871.ts"
             },
@@ -789,9 +995,14 @@
                 url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/418111.ts"
             },
             {
-                name: "Alwan 2 4K",
+                name: "ALWAN 2 4K",
                 flag: "📺",
                 url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/418114.ts"
+            },
+            {
+                name: "Bein TOD HDR",
+                flag: "🎬",
+                url: "https://mavpro.xyz:8080/live/8454745cdsdw/8455144xsfdd/405509.M3U8"
             }
         ];
 
@@ -816,17 +1027,21 @@
 
         const device = getDeviceType();
 
-        // ===== عرض روابط التطبيقات حسب الجهاز =====
+        // ===== عرض روابط التطبيقات حسب الجهاز مع أيقونات =====
         function renderAppLinks() {
             const container = document.getElementById('appLinksContainer');
             const hint = document.getElementById('appHint');
+            const downloadBtn = document.getElementById('downloadNowBtn');
 
             if (device === 'ios') {
                 container.innerHTML = `
                     <div class="app-row">
                         <span class="app-name">
-                            <span class="app-icon">🎬</span>
-                            VLC Media Player
+                            <img src="${APP_ICONS.vlc}" alt="VLC" class="app-icon-img" />
+                            <span class="app-label">
+                                <span class="app-title-text">VLC Media Player</span>
+                                <span class="app-sub">مشغل فيديو متعدد الإمكانيات</span>
+                            </span>
                         </span>
                         <span class="app-badge">
                             <a href="${APP_LINKS.vlc.ios}" target="_blank" class="badge-link ios">🍏 iPhone</a>
@@ -835,15 +1050,26 @@
                 `;
                 hint.innerHTML = `<span class="emoji">💡</span> <strong>تنبيه:</strong> يجب تحميل <strong>VLC</strong> من متجر التطبيقات قبل تشغيل البث.`;
 
-                // إظهار رسالة تعليمات iPhone مع الصورة
-                document.getElementById('iosMessageSection').classList.add('visible');
+                downloadBtn.href = APP_LINKS.vlc.ios;
+                downloadBtn.className = 'download-now-btn ios-btn';
+                downloadBtn.innerHTML = `
+                    <span class="btn-icon">⬇️</span>
+                    تنزيل المشغل الآن (VLC)
+                    <span class="btn-arrow">→</span>
+                `;
+
+                document.getElementById('iosMessageSection').classList.remove('visible');
+                document.getElementById('showIssueBtn').classList.add('visible');
 
             } else if (device === 'android') {
                 container.innerHTML = `
                     <div class="app-row">
                         <span class="app-name">
-                            <span class="app-icon">🎬</span>
-                            VLC Media Player
+                            <img src="${APP_ICONS.vlc}" alt="VLC" class="app-icon-img" />
+                            <span class="app-label">
+                                <span class="app-title-text">VLC Media Player</span>
+                                <span class="app-sub">مشغل فيديو متعدد الإمكانيات</span>
+                            </span>
                         </span>
                         <span class="app-badge">
                             <a href="${APP_LINKS.vlc.android}" target="_blank" class="badge-link android">🤖 Android</a>
@@ -851,8 +1077,11 @@
                     </div>
                     <div class="app-row">
                         <span class="app-name">
-                            <span class="app-icon">▶️</span>
-                            MX Player
+                            <img src="${APP_ICONS.mx}" alt="MX Player" class="app-icon-img" />
+                            <span class="app-label">
+                                <span class="app-title-text">MX Player</span>
+                                <span class="app-sub">مشغل فيديو احترافي</span>
+                            </span>
                         </span>
                         <span class="app-badge">
                             <a href="${APP_LINKS.mx.android}" target="_blank" class="badge-link mx">🤖 Android</a>
@@ -860,14 +1089,27 @@
                     </div>
                 `;
                 hint.innerHTML = `<span class="emoji">💡</span> <strong>تنبيه:</strong> يمكنك استخدام <strong>VLC</strong> أو <strong>MX Player</strong>. قم بتحميل أحدهما من متجر جوجل.`;
+
+                downloadBtn.href = APP_LINKS.vlc.android;
+                downloadBtn.className = 'download-now-btn android-btn';
+                downloadBtn.innerHTML = `
+                    <span class="btn-icon">⬇️</span>
+                    تنزيل المشغل الآن (VLC)
+                    <span class="btn-arrow">→</span>
+                `;
+
+                document.getElementById('showIssueBtn').classList.remove('visible');
                 document.getElementById('iosMessageSection').classList.remove('visible');
 
             } else {
                 container.innerHTML = `
                     <div class="app-row">
                         <span class="app-name">
-                            <span class="app-icon">🎬</span>
-                            VLC Media Player
+                            <img src="${APP_ICONS.vlc}" alt="VLC" class="app-icon-img" />
+                            <span class="app-label">
+                                <span class="app-title-text">VLC Media Player</span>
+                                <span class="app-sub">مشغل فيديو متعدد الإمكانيات</span>
+                            </span>
                         </span>
                         <span class="app-badge">
                             <a href="${APP_LINKS.vlc.android}" target="_blank" class="badge-link android">📲 تحميل</a>
@@ -875,7 +1117,40 @@
                     </div>
                 `;
                 hint.innerHTML = `<span class="emoji">💡</span> قم بتحميل <strong>VLC</strong> لتشغيل البث.`;
+
+                downloadBtn.href = APP_LINKS.vlc.android;
+                downloadBtn.className = 'download-now-btn';
+                downloadBtn.innerHTML = `
+                    <span class="btn-icon">⬇️</span>
+                    تنزيل المشغل الآن
+                    <span class="btn-arrow">→</span>
+                `;
+
+                document.getElementById('showIssueBtn').classList.remove('visible');
                 document.getElementById('iosMessageSection').classList.remove('visible');
+            }
+        }
+
+        // ===== دالة إظهار/إخفاء رسالة iPhone =====
+        function toggleIosMessage() {
+            const section = document.getElementById('iosMessageSection');
+            const icon = document.getElementById('toggleIcon');
+            if (section.classList.contains('visible')) {
+                section.classList.remove('visible');
+                icon.textContent = '▼';
+                document.getElementById('showIssueBtn').innerHTML = `
+                    <span class="btn-emoji">📱</span>
+                    خطوات عمل المشغل للآيفون
+                    <span id="toggleIcon">▼</span>
+                `;
+            } else {
+                section.classList.add('visible');
+                icon.textContent = '▲';
+                document.getElementById('showIssueBtn').innerHTML = `
+                    <span class="btn-emoji">📱</span>
+                    خطوات عمل المشغل للآيفون
+                    <span id="toggleIcon">▲</span>
+                `;
             }
         }
 
@@ -902,7 +1177,11 @@
                     const btnVLC = document.createElement('a');
                     btnVLC.href = `vlc://${channel.url}`;
                     btnVLC.className = 'btn-small btn-ios-small';
-                    btnVLC.innerHTML = `<span class="emoji">🎬</span> VLC <span class="platform-badge">🍏</span>`;
+                    btnVLC.innerHTML = `
+                        <img src="${APP_ICONS.vlc}" alt="VLC" class="btn-icon-img" />
+                        VLC
+                        <span class="platform-badge">🍏</span>
+                    `;
                     btnVLC.target = '_blank';
                     btnVLC.onclick = function(e) {
                         e.preventDefault();
@@ -913,9 +1192,13 @@
 
                 } else if (device === 'android') {
                     const btnVLC = document.createElement('a');
-                    btnVLC.href = `intent://${channel.url.replace('http://', '')}#Intent;scheme=http;package=org.videolan.vlc;type=video/*;end`;
+                    btnVLC.href = `intent://${channel.url.replace('http://', '').replace('https://', '')}#Intent;scheme=${channel.url.startsWith('https') ? 'https' : 'http'};package=org.videolan.vlc;type=video/*;end`;
                     btnVLC.className = 'btn-small btn-vlc-small';
-                    btnVLC.innerHTML = `<span class="emoji">🎬</span> VLC <span class="platform-badge">🤖</span>`;
+                    btnVLC.innerHTML = `
+                        <img src="${APP_ICONS.vlc}" alt="VLC" class="btn-icon-img" />
+                        VLC
+                        <span class="platform-badge">🤖</span>
+                    `;
                     btnVLC.onclick = function(e) {
                         e.preventDefault();
                         window.location.href = this.href;
@@ -927,9 +1210,13 @@
                     buttonsDiv.appendChild(btnVLC);
 
                     const btnMX = document.createElement('a');
-                    btnMX.href = `intent://${channel.url.replace('http://', '')}#Intent;scheme=http;package=com.mxtech.videoplayer.ad;type=video/*;end`;
+                    btnMX.href = `intent://${channel.url.replace('http://', '').replace('https://', '')}#Intent;scheme=${channel.url.startsWith('https') ? 'https' : 'http'};package=com.mxtech.videoplayer.ad;type=video/*;end`;
                     btnMX.className = 'btn-small btn-mx-small';
-                    btnMX.innerHTML = `<span class="emoji">▶️</span> MX <span class="platform-badge">🤖</span>`;
+                    btnMX.innerHTML = `
+                        <img src="${APP_ICONS.mx}" alt="MX" class="btn-icon-img" />
+                        MX
+                        <span class="platform-badge">🤖</span>
+                    `;
                     btnMX.onclick = function(e) {
                         e.preventDefault();
                         window.location.href = this.href;
@@ -945,7 +1232,10 @@
                     btnDownload.href = APP_LINKS.vlc.android;
                     btnDownload.target = '_blank';
                     btnDownload.className = 'btn-small btn-vlc-small';
-                    btnDownload.innerHTML = `<span class="emoji">📲</span> تحميل VLC`;
+                    btnDownload.innerHTML = `
+                        <img src="${APP_ICONS.vlc}" alt="VLC" class="btn-icon-img" />
+                        تحميل VLC
+                    `;
                     buttonsDiv.appendChild(btnDownload);
                 }
 
@@ -983,7 +1273,7 @@
 
         // ===== Footer Click =====
         document.getElementById('footerTrigger').addEventListener('click', function() {
-            showToast('📺 IPTV Player | قنوات بي إن');
+            showToast('📺 IPTV Player | قنوات بي إن ماكس');
         });
 
         // ===== التهيئة =====
@@ -991,9 +1281,10 @@
         renderChannels();
         updateNote();
 
-        console.log('📺 IPTV Player - قنوات بي إن');
+        console.log('📺 IPTV Player - قنوات بي إن ماكس');
         console.log(`📡 تم تحميل ${channels.length} قناة`);
         console.log(`📱 الجهاز: ${device}`);
+        console.log('🎨 تم إضافة أيقونات التطبيقات');
     </script>
 
 </body>
