@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>📺 IPTV - مجلس معلمي سعيد بن العاص</title>
+    <title>📺 Fahad Tv - IPTV</title>
     <style>
         * {
             margin: 0;
@@ -586,6 +586,151 @@
             opacity: 0.8;
         }
 
+        .channel-right .multi-link-badge {
+            font-size: 12px;
+            background: rgba(212, 167, 69, 0.15);
+            color: var(--gold-light);
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-left: 8px;
+            font-weight: 600;
+            border: 1px solid var(--border-gold);
+        }
+
+        /* ===== LINKS OVERLAY ===== */
+        .links-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(16px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInOverlay 0.3s ease;
+        }
+
+        @keyframes fadeInOverlay {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .links-modal {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-gold);
+            border-radius: var(--radius-lg);
+            padding: 24px 20px;
+            max-width: 420px;
+            width: 95%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.60);
+            text-align: center;
+        }
+
+        .links-modal .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .links-modal .modal-header .modal-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--gold-light);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .links-modal .modal-header .modal-close {
+            background: rgba(255, 255, 255, 0.04);
+            border: none;
+            color: var(--text-muted);
+            font-size: 22px;
+            cursor: pointer;
+            padding: 0 8px;
+            border-radius: 8px;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .links-modal .modal-header .modal-close:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-subtle);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .link-item:hover {
+            border-color: var(--border-gold);
+            background: rgba(212, 167, 69, 0.04);
+        }
+
+        .link-item .link-number {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2px 12px;
+            border-radius: 20px;
+            min-width: 30px;
+        }
+
+        .link-item .link-url {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-family: monospace;
+            flex: 1;
+            margin: 0 12px;
+            text-align: left;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            direction: ltr;
+        }
+
+        .link-item .link-play-btn {
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 11px;
+            font-weight: 700;
+            border: none;
+            background: var(--gold-gradient);
+            color: #0a0e1a;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            flex-shrink: 0;
+        }
+
+        .link-item .link-play-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .links-modal .no-links {
+            color: var(--text-muted);
+            font-size: 14px;
+            padding: 20px 0;
+        }
+
         .divider {
             display: flex;
             align-items: center;
@@ -672,6 +817,11 @@
             .channel-right .flag {
                 font-size: 18px;
             }
+            
+            .channel-right .multi-link-badge {
+                font-size: 9px;
+                padding: 1px 8px;
+            }
 
             .container {
                 padding: 20px 16px;
@@ -698,6 +848,19 @@
             .ios-screenshot-wrapper {
                 padding: 6px;
             }
+            .link-item {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .link-item .link-url {
+                width: 100%;
+                text-align: center;
+                margin: 4px 0;
+            }
+            .link-item .link-play-btn {
+                width: 100%;
+                padding: 8px;
+            }
         }
     </style>
 </head>
@@ -706,7 +869,7 @@
     <div class="container">
         <div class="header">
             <span class="icon">📡</span>
-            <h1>مجلس معلمي سعيد بن العاص للبث المباشر</h1>
+            <h1>Fahad Tv - البث المباشر</h1>
             <span class="badge">● LIVE</span>
             <p id="subText">اختر القناة للبدء</p>
         </div>
@@ -796,7 +959,7 @@
             🔹 تأكد من تثبيت المشغل أولاً
         </p>
 
-        <div class="footer">⚡ IPTV</div>
+        <div class="footer">⚡ IPTV - Fahad Tv</div>
     </div>
 
     <div id="toast" class="toast">✅ جاري الفتح...</div>
@@ -819,42 +982,79 @@
             "Bein TOD HDR": "https://i.ibb.co/3yYwCbxS/34a7f8a7-9183-4d97-ae30-cf05b5f72513.png"
         };
 
-        // ===== قائمة القنوات =====
+        // ===== قائمة القنوات مع جميع الروابط مجمعة (السابقة + الجديدة) =====
         const channels = [
             {
                 name: "Bein Max 1 HD",
                 flag: "⚽",
-                url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/460862.ts"
+                urls: [
+                    // الروابط السابقة
+                    "http://akar13.xyz:8080/live/15034094901029/18800196589372/460862.ts",
+                    // الروابط الجديدة
+                    "http://195.182.16.45:8080/live/omar777/01103978590/460861.ts",
+                    "http://195.182.16.45:8080/live/omar777/01103978590/460862.ts",
+                    "http://195.182.16.44:8080/live/357643467990765/Ofgo3yz8CH/460861.ts"
+                ]
             },
             {
                 name: "Bein Max 2 HD",
                 flag: "⚽",
-                url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/460865.ts"
+                urls: [
+                    // الروابط السابقة
+                    "http://akar13.xyz:8080/live/15034094901029/18800196589372/460865.ts",
+                    // الروابط الجديدة
+                    "http://195.182.16.45:8080/live/omar777/01103978590/460864.ts",
+                    "http://195.182.16.45:8080/live/115581720170/135965685413/460865.ts",
+                    "http://195.182.16.44:8080/live/357643467990765/Ofgo3yz8CH/460864.ts"
+                ]
             },
             {
                 name: "Bein Max 3 HD",
                 flag: "⚽",
-                url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/460868.ts"
+                urls: [
+                    // الروابط السابقة
+                    "http://akar13.xyz:8080/live/15034094901029/18800196589372/460868.ts",
+                    // الروابط الجديدة
+                    "http://195.182.16.45:8080/live/omar777/01103978590/460867.ts",
+                    "http://195.182.16.45:8080/live/115581720170/135965685413/460868.ts",
+                    "http://195.182.16.44:8080/live/357643467990765/Ofgo3yz8CH/460867.ts"
+                ]
             },
             {
                 name: "Bein Max 4 HD",
                 flag: "⚽",
-                url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/460871.ts"
+                urls: [
+                    // الروابط السابقة
+                    "http://akar13.xyz:8080/live/15034094901029/18800196589372/460871.ts",
+                    // الروابط الجديدة
+                    "http://195.182.16.45:8080/live/omar777/01103978590/460870.ts",
+                    "http://195.182.16.45:8080/live/115581720170/135965685413/460871.ts",
+                    "http://195.182.16.44:8080/live/357643467990765/Ofgo3yz8CH/460870.ts"
+                ]
             },
             {
                 name: "ALWAN 1 4K",
                 flag: "📺",
-                url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/418111.ts"
+                urls: [
+                    // الروابط السابقة
+                    "http://akar13.xyz:8080/live/15034094901029/18800196589372/418111.ts"
+                ]
             },
             {
                 name: "ALWAN 2 4K",
                 flag: "📺",
-                url: "http://akar13.xyz:8080/live/15034094901029/18800196589372/418114.ts"
+                urls: [
+                    // الروابط السابقة
+                    "http://akar13.xyz:8080/live/15034094901029/18800196589372/418114.ts"
+                ]
             },
             {
                 name: "Bein TOD HDR",
                 flag: "🎬",
-                url: "https://mavpro.xyz:8080/live/8454745cdsdw/8455144xsfdd/405509.M3U8"
+                urls: [
+                    // الروابط السابقة
+                    "https://mavpro.xyz:8080/live/8454745cdsdw/8455144xsfdd/405509.M3U8"
+                ]
             }
         ];
 
@@ -885,7 +1085,6 @@
             const appTitle = document.getElementById('appTitle');
 
             if (device === 'ios') {
-                // iPhone: بطاقة واحدة فقط لـ VLC
                 appTitle.innerHTML = `
                     <span class="icon-small">📲</span>
                     قبل الضغط على القنوات يرجى تحميل "المشغل" التالي
@@ -908,7 +1107,6 @@
                 document.getElementById('showIssueBtn').classList.add('visible');
 
             } else if (device === 'android') {
-                // Android: بطاقتان منفصلتان (VLC و MX)
                 appTitle.innerHTML = `
                     <span class="icon-small">📲</span>
                     قبل الضغط على القنوات يرجى تحميل أحد "المشغلين التاليين" أو "كلاهما"
@@ -941,7 +1139,6 @@
                 document.getElementById('iosMessageSection').classList.remove('visible');
 
             } else {
-                // أجهزة أخرى
                 appTitle.innerHTML = `
                     <span class="icon-small">📲</span>
                     قبل الضغط على القنوات يرجى تحميل "المشغل" التالي
@@ -969,10 +1166,11 @@
         function toggleIosMessage() {
             const section = document.getElementById('iosMessageSection');
             const icon = document.getElementById('toggleIcon');
+            const btn = document.getElementById('showIssueBtn');
             if (section.classList.contains('visible')) {
                 section.classList.remove('visible');
                 icon.textContent = '▼';
-                document.getElementById('showIssueBtn').innerHTML = `
+                btn.innerHTML = `
                     <span class="btn-emoji">📱</span>
                     خطوات عمل المشغل للآيفون
                     <span id="toggleIcon">▼</span>
@@ -980,7 +1178,7 @@
             } else {
                 section.classList.add('visible');
                 icon.textContent = '▲';
-                document.getElementById('showIssueBtn').innerHTML = `
+                btn.innerHTML = `
                     <span class="btn-emoji">📱</span>
                     خطوات عمل المشغل للآيفون
                     <span id="toggleIcon">▲</span>
@@ -988,14 +1186,14 @@
             }
         }
 
-        // ===== تشغيل القناة مباشرة (للايفون) =====
-        function playChannelOnIOS(url) {
+        // ===== تشغيل الرابط مباشرة (للايفون) =====
+        function playUrlOnIOS(url) {
             window.location.href = `vlc://${url}`;
             showToast('📲 جاري فتح VLC... اضغط "Play" أو "Always Play URLs" عند ظهور الرسالة');
         }
 
-        // ===== تشغيل القناة على Android =====
-        function playChannelOnAndroid(url, player) {
+        // ===== تشغيل الرابط على Android =====
+        function playUrlOnAndroid(url, player) {
             if (player === 'vlc') {
                 const intentUrl = `intent://${url.replace('http://', '').replace('https://', '')}#Intent;scheme=${url.startsWith('https') ? 'https' : 'http'};package=org.videolan.vlc;type=video/*;end`;
                 window.location.href = intentUrl;
@@ -1004,6 +1202,127 @@
                 const intentUrl = `intent://${url.replace('http://', '').replace('https://', '')}#Intent;scheme=${url.startsWith('https') ? 'https' : 'http'};package=com.mxtech.videoplayer.ad;type=video/*;end`;
                 window.location.href = intentUrl;
                 showToast('📲 جاري فتح MX Player...');
+            }
+        }
+
+        // ===== عرض قائمة الروابط =====
+        function showLinksOverlay(channel) {
+            const overlay = document.createElement('div');
+            overlay.className = 'links-overlay';
+
+            const iconUrl = CHANNEL_ICONS[channel.name] || '';
+
+            let linksHtml = '';
+            if (channel.urls && channel.urls.length > 0) {
+                channel.urls.forEach((url, index) => {
+                    linksHtml += `
+                        <div class="link-item" onclick="handleLinkClick('${url}')">
+                            <span class="link-number">#${index + 1}</span>
+                            <span class="link-url">${url.substring(0, 50)}${url.length > 50 ? '...' : ''}</span>
+                            <button class="link-play-btn" onclick="event.stopPropagation(); handleLinkClick('${url}')">▶ تشغيل</button>
+                        </div>
+                    `;
+                });
+            } else {
+                linksHtml = `<div class="no-links">⚠️ لا توجد روابط متاحة لهذه القناة</div>`;
+            }
+
+            overlay.innerHTML = `
+                <div class="links-modal">
+                    <div class="modal-header">
+                        <div class="modal-title">
+                            ${iconUrl ? `<img src="${iconUrl}" style="width:24px;height:24px;border-radius:6px;object-fit:cover;" />` : ''}
+                            ${channel.flag} ${channel.name}
+                            <span style="font-size:11px;color:var(--text-muted);font-weight:400;">${channel.urls ? channel.urls.length : 0} روابط</span>
+                        </div>
+                        <button class="modal-close" onclick="closeLinksOverlay()">✕</button>
+                    </div>
+                    ${linksHtml}
+                </div>
+            `;
+
+            document.body.appendChild(overlay);
+            document.body.style.overflow = 'hidden';
+
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeLinksOverlay();
+                }
+            });
+
+            window._linksOverlay = overlay;
+        }
+
+        function closeLinksOverlay() {
+            if (window._linksOverlay) {
+                window._linksOverlay.remove();
+                window._linksOverlay = null;
+                document.body.style.overflow = '';
+            }
+        }
+
+        // ===== معالج النقر على الرابط =====
+        function handleLinkClick(url) {
+            closeLinksOverlay();
+            
+            if (device === 'ios') {
+                playUrlOnIOS(url);
+            } else if (device === 'android') {
+                showAndroidPlayerChoiceForUrl(url);
+            } else {
+                window.open(url, '_blank');
+                showToast('📲 جاري فتح الرابط...');
+            }
+        }
+
+        // ===== نافذة اختيار المشغل للأندرويد (للروابط) =====
+        function showAndroidPlayerChoiceForUrl(url) {
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(0,0,0,0.80); backdrop-filter: blur(16px);
+                z-index: 1001; display: flex; justify-content: center; align-items: center;
+                animation: fadeInOverlay 0.3s ease;
+            `;
+
+            overlay.innerHTML = `
+                <div style="background: #111927; border: 1px solid rgba(212,167,69,0.20); border-radius: 24px; padding: 28px 24px; max-width: 380px; width: 95%; box-shadow: 0 40px 80px rgba(0,0,0,0.60); text-align: center;">
+                    <div style="font-size: 18px; font-weight: 800; color: #f0d080; margin-bottom: 6px;">🎬 اختر المشغل</div>
+                    <div style="font-size: 13px; color: #8a9bb5; margin-bottom: 20px;">اختر التطبيق الذي تريد تشغيل البث عليه</div>
+                    <div style="font-size: 11px; font-weight: 700; color: #8a9bb5; background: rgba(255,255,255,0.03); padding: 6px 12px; border-radius: 8px; margin-bottom: 18px; border: 1px solid rgba(255,255,255,0.04); direction: ltr; word-break: break-all; font-family: monospace;">
+                        ${url}
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:10px;">
+                        <button onclick="playUrlOnAndroid('${url}', 'vlc'); closeAndroidPlayerChoice();" style="display:flex;align-items:center;justify-content:center;gap:12px;padding:14px 20px;border:none;border-radius:60px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;color:#fff;width:100%;background:linear-gradient(145deg,#ff8800,#e67600);box-shadow:0 4px 20px rgba(255,136,0,0.25);">
+                            <img src="${APP_ICONS.vlc}" style="width:28px;height:28px;border-radius:6px;object-fit:cover;" />
+                            تشغيل على VLC
+                        </button>
+                        <button onclick="playUrlOnAndroid('${url}', 'mx'); closeAndroidPlayerChoice();" style="display:flex;align-items:center;justify-content:center;gap:12px;padding:14px 20px;border:none;border-radius:60px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;color:#fff;width:100%;background:linear-gradient(145deg,#e74c3c,#c0392b);box-shadow:0 4px 20px rgba(231,76,60,0.25);">
+                            <img src="${APP_ICONS.mx}" style="width:28px;height:28px;border-radius:6px;object-fit:cover;" />
+                            تشغيل على MX Player
+                        </button>
+                        <button onclick="closeAndroidPlayerChoice();" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.04);color:#8a9bb5;padding:14px 20px;border-radius:60px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;width:100%;">✕ إلغاء</button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(overlay);
+            document.body.style.overflow = 'hidden';
+
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeAndroidPlayerChoice();
+                }
+            });
+
+            window._androidPlayerChoice = overlay;
+        }
+
+        function closeAndroidPlayerChoice() {
+            if (window._androidPlayerChoice) {
+                window._androidPlayerChoice.remove();
+                window._androidPlayerChoice = null;
+                document.body.style.overflow = '';
             }
         }
 
@@ -1017,6 +1336,7 @@
                 channelDiv.className = 'channel-item';
 
                 const iconUrl = CHANNEL_ICONS[channel.name] || '';
+                const hasMultiple = channel.urls && channel.urls.length > 1;
 
                 channelDiv.innerHTML = `
                     <div class="channel-left">
@@ -1025,76 +1345,34 @@
                     </div>
                     <div class="channel-right">
                         <span class="flag">${channel.flag}</span>
+                        ${hasMultiple ? `<span class="multi-link-badge">🔗 ${channel.urls.length}</span>` : ''}
                     </div>
                 `;
 
                 channelDiv.addEventListener('click', function() {
-                    if (device === 'ios') {
-                        playChannelOnIOS(channel.url);
-                    } else if (device === 'android') {
-                        showAndroidPlayerChoice(channel);
+                    if (channel.urls && channel.urls.length > 0) {
+                        if (channel.urls.length === 1) {
+                            // رابط واحد فقط - تشغيل مباشر
+                            const url = channel.urls[0];
+                            if (device === 'ios') {
+                                playUrlOnIOS(url);
+                            } else if (device === 'android') {
+                                showAndroidPlayerChoiceForUrl(url);
+                            } else {
+                                window.open(url, '_blank');
+                                showToast('📲 جاري فتح الرابط...');
+                            }
+                        } else {
+                            // روابط متعددة - عرض القائمة
+                            showLinksOverlay(channel);
+                        }
                     } else {
-                        window.open(channel.url, '_blank');
-                        showToast('📲 جاري فتح الرابط...');
+                        showToast('⚠️ لا توجد روابط لهذه القناة');
                     }
                 });
 
                 channelList.appendChild(channelDiv);
             });
-        }
-
-        // ===== نافذة اختيار المشغل للأندرويد =====
-        function showAndroidPlayerChoice(channel) {
-            const overlay = document.createElement('div');
-            overlay.style.cssText = `
-                position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-                background: rgba(0,0,0,0.80); backdrop-filter: blur(16px);
-                z-index: 1000; display: flex; justify-content: center; align-items: center;
-                animation: fadeInOverlay 0.3s ease;
-            `;
-
-            const iconUrl = CHANNEL_ICONS[channel.name] || '';
-
-            overlay.innerHTML = `
-                <div style="background: #111927; border: 1px solid rgba(212,167,69,0.20); border-radius: 24px; padding: 28px 24px; max-width: 380px; width: 95%; box-shadow: 0 40px 80px rgba(0,0,0,0.60); text-align: center;">
-                    <div style="font-size: 18px; font-weight: 800; color: #f0d080; margin-bottom: 6px;">🎬 اختر المشغل</div>
-                    <div style="font-size: 13px; color: #8a9bb5; margin-bottom: 20px;">اختر التطبيق الذي تريد تشغيل القناة عليه</div>
-                    <div style="font-size: 14px; font-weight: 700; color: #edf2f7; background: rgba(255,255,255,0.03); padding: 8px 16px; border-radius: 10px; margin-bottom: 18px; border: 1px solid rgba(255,255,255,0.04);">
-                        ${iconUrl ? `<img src="${iconUrl}" style="width:28px;height:28px;border-radius:6px;object-fit:cover;vertical-align:middle;margin-left:8px;" />` : ''}
-                        ${channel.flag} ${channel.name}
-                    </div>
-                    <div style="display:flex;flex-direction:column;gap:10px;">
-                        <button onclick="playChannelOnAndroid('${channel.url}', 'vlc'); closeAndroidOverlay();" style="display:flex;align-items:center;justify-content:center;gap:12px;padding:14px 20px;border:none;border-radius:60px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;color:#fff;width:100%;background:linear-gradient(145deg,#ff8800,#e67600);box-shadow:0 4px 20px rgba(255,136,0,0.25);">
-                            <img src="${APP_ICONS.vlc}" style="width:28px;height:28px;border-radius:6px;object-fit:cover;" />
-                            تشغيل على VLC
-                        </button>
-                        <button onclick="playChannelOnAndroid('${channel.url}', 'mx'); closeAndroidOverlay();" style="display:flex;align-items:center;justify-content:center;gap:12px;padding:14px 20px;border:none;border-radius:60px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;color:#fff;width:100%;background:linear-gradient(145deg,#e74c3c,#c0392b);box-shadow:0 4px 20px rgba(231,76,60,0.25);">
-                            <img src="${APP_ICONS.mx}" style="width:28px;height:28px;border-radius:6px;object-fit:cover;" />
-                            تشغيل على MX Player
-                        </button>
-                        <button onclick="closeAndroidOverlay();" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.04);color:#8a9bb5;padding:14px 20px;border-radius:60px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;width:100%;">✕ إلغاء</button>
-                    </div>
-                </div>
-            `;
-
-            document.body.appendChild(overlay);
-            document.body.style.overflow = 'hidden';
-
-            overlay.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    closeAndroidOverlay();
-                }
-            });
-
-            window._androidOverlay = overlay;
-        }
-
-        function closeAndroidOverlay() {
-            if (window._androidOverlay) {
-                window._androidOverlay.remove();
-                window._androidOverlay = null;
-                document.body.style.overflow = '';
-            }
         }
 
         // ===== تحديث النص السفلي =====
@@ -1124,9 +1402,12 @@
         renderChannels();
         updateNote();
 
-        console.log('📺 IPTV - مجلس معلمي سعيد بن العاص للبث المباشر');
+        console.log('📺 Fahad Tv - IPTV');
         console.log(`📡 تم تحميل ${channels.length} قناة`);
         console.log(`📱 الجهاز: ${device}`);
+        channels.forEach(c => {
+            console.log(`  📺 ${c.name}: ${c.urls ? c.urls.length : 0} رابط`);
+        });
     </script>
 
 </body>
