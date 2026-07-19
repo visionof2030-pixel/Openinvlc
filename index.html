@@ -143,7 +143,7 @@
             margin-top: 6px;
         }
 
-        /* ===== APP DOWNLOAD SECTION ===== */
+        /* ===== APP DOWNLOAD SECTION - IMPROVED ===== */
         .app-download-section {
             background: var(--bg-card);
             backdrop-filter: blur(12px);
@@ -159,7 +159,7 @@
             font-size: 13px;
             font-weight: 700;
             color: var(--gold-light);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -171,213 +171,132 @@
             font-size: 18px;
         }
 
-        .app-download-section .app-links {
+        /* App Cards Grid */
+        .app-cards {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-bottom: 12px;
+            gap: 12px;
+            margin-bottom: 0;
         }
 
-        .app-download-section .app-links .app-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
+        .app-card {
             background: rgba(255, 255, 255, 0.02);
-            padding: 10px 16px;
             border-radius: var(--radius-sm);
+            padding: 12px 16px;
             border: 1px solid var(--border-subtle);
             transition: var(--transition);
-        }
-
-        .app-download-section .app-links .app-row:hover {
-            border-color: var(--border-gold);
-            background: rgba(212, 167, 69, 0.04);
-        }
-
-        .app-download-section .app-links .app-row .app-name {
-            font-weight: 700;
-            font-size: 14px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
+            text-align: left;
         }
 
-        .app-download-section .app-links .app-row .app-name .app-icon-img {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+        .app-card:hover {
+            border-color: var(--border-gold);
+            background: rgba(212, 167, 69, 0.04);
+            transform: translateY(-1px);
+        }
+
+        .app-card .app-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
             object-fit: cover;
             box-shadow: 0 2px 12px rgba(0, 0, 0, 0.30);
-            transition: var(--transition);
             border: 1px solid rgba(255, 255, 255, 0.06);
+            flex-shrink: 0;
+            transition: var(--transition);
         }
 
-        .app-download-section .app-links .app-row .app-name .app-icon-img:hover {
+        .app-card .app-icon:hover {
             transform: scale(1.05);
-            box-shadow: 0 4px 20px rgba(212, 167, 69, 0.20);
         }
 
-        .app-download-section .app-links .app-row .app-name .app-label {
+        .app-card .app-info {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
             gap: 2px;
+            min-width: 0;
         }
 
-        .app-download-section .app-links .app-row .app-name .app-label .app-title-text {
+        .app-card .app-info .app-name {
             font-size: 14px;
             font-weight: 700;
             color: var(--text-primary);
+            line-height: 1.3;
         }
 
-        .app-download-section .app-links .app-row .app-name .app-label .app-sub {
-            font-size: 10px;
+        .app-card .app-info .app-desc {
+            font-size: 11px;
             color: var(--text-muted);
-            font-weight: 400;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
-        .app-download-section .app-links .app-row .app-badge {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .app-download-section .app-links .app-row .app-badge .badge-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 5px 14px;
+        .app-card .app-download-btn {
+            flex-shrink: 0;
+            padding: 6px 16px;
             border-radius: 40px;
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 700;
             text-decoration: none;
             transition: var(--transition);
             font-family: inherit;
-        }
-
-        .app-download-section .app-links .app-row .app-badge .badge-link.android {
-            background: var(--success-bg);
-            color: var(--success);
-            border: 1px solid rgba(46, 204, 113, 0.15);
-        }
-
-        .app-download-section .app-links .app-row .app-badge .badge-link.android:hover {
-            background: rgba(46, 204, 113, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .app-download-section .app-links .app-row .app-badge .badge-link.ios {
-            background: var(--info-bg);
-            color: var(--info);
-            border: 1px solid rgba(74, 158, 255, 0.15);
-        }
-
-        .app-download-section .app-links .app-row .app-badge .badge-link.ios:hover {
-            background: rgba(74, 158, 255, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .app-download-section .app-links .app-row .app-badge .badge-link.mx {
-            background: var(--danger-bg);
-            color: var(--danger);
-            border: 1px solid rgba(231, 76, 60, 0.15);
-        }
-
-        .app-download-section .app-links .app-row .app-badge .badge-link.mx:hover {
-            background: rgba(231, 76, 60, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .download-now-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            padding: 12px 18px;
-            margin-top: 4px;
             border: none;
-            border-radius: 60px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
             background: var(--gold-gradient);
             color: #0a0e1a;
-            font-size: 14px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: inherit;
+            box-shadow: 0 2px 12px rgba(212, 167, 69, 0.15);
+        }
+
+        .app-card .app-download-btn:hover {
+            transform: translateY(-2px) scale(1.03);
             box-shadow: 0 4px 20px rgba(212, 167, 69, 0.25);
-            text-decoration: none;
-            text-align: center;
         }
 
-        .download-now-btn:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 40px rgba(212, 167, 69, 0.35);
+        .app-card .app-download-btn:active {
+            transform: scale(0.95);
         }
 
-        .download-now-btn:active {
-            transform: scale(0.97);
-        }
-
-        .download-now-btn .btn-icon {
-            font-size: 20px;
-        }
-
-        .download-now-btn .btn-arrow {
-            font-size: 16px;
-            transition: var(--transition);
-        }
-
-        .download-now-btn:hover .btn-arrow {
-            transform: translateX(5px);
-        }
-
-        .download-now-btn.android-btn {
-            background: linear-gradient(135deg, #34a853, #1a8d3d);
-            color: #fff;
-            box-shadow: 0 4px 20px rgba(52, 168, 83, 0.25);
-        }
-
-        .download-now-btn.android-btn:hover {
-            box-shadow: 0 8px 40px rgba(52, 168, 83, 0.35);
-        }
-
-        .download-now-btn.ios-btn {
+        .app-card .app-download-btn.ios-btn {
             background: linear-gradient(135deg, #007aff, #0055cc);
             color: #fff;
-            box-shadow: 0 4px 20px rgba(0, 122, 255, 0.25);
+            box-shadow: 0 2px 12px rgba(0, 122, 255, 0.20);
         }
 
-        .download-now-btn.ios-btn:hover {
-            box-shadow: 0 8px 40px rgba(0, 122, 255, 0.35);
+        .app-card .app-download-btn.ios-btn:hover {
+            box-shadow: 0 4px 20px rgba(0, 122, 255, 0.30);
         }
 
-        .download-now-btn.mx-btn {
+        .app-card .app-download-btn.android-btn {
+            background: linear-gradient(135deg, #34a853, #1a8d3d);
+            color: #fff;
+            box-shadow: 0 2px 12px rgba(52, 168, 83, 0.20);
+        }
+
+        .app-card .app-download-btn.android-btn:hover {
+            box-shadow: 0 4px 20px rgba(52, 168, 83, 0.30);
+        }
+
+        .app-card .app-download-btn.mx-btn {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
             color: #fff;
-            box-shadow: 0 4px 20px rgba(231, 76, 60, 0.25);
+            box-shadow: 0 2px 12px rgba(231, 76, 60, 0.20);
         }
 
-        .download-now-btn.mx-btn:hover {
-            box-shadow: 0 8px 40px rgba(231, 76, 60, 0.35);
+        .app-card .app-download-btn.mx-btn:hover {
+            box-shadow: 0 4px 20px rgba(231, 76, 60, 0.30);
         }
 
-        .download-buttons-row {
-            display: flex;
-            gap: 8px;
-            margin-top: 6px;
-        }
-
-        .download-buttons-row .download-now-btn {
-            flex: 1;
-            padding: 10px 14px;
-            font-size: 12px;
-        }
-
-        .download-buttons-row .download-now-btn .btn-icon {
-            font-size: 18px;
+        .app-card .app-platform-badge {
+            display: none;
         }
 
         /* ===== IOS MESSAGE SECTION - ARABIC SUPPORT ===== */
@@ -760,32 +679,24 @@
             .header h1 {
                 font-size: 17px;
             }
-            .app-download-section .app-links .app-row {
-                flex-direction: column;
-                align-items: stretch;
-                text-align: center;
+            .app-card {
+                flex-wrap: wrap;
+                gap: 10px;
+                padding: 12px;
             }
-            .app-download-section .app-links .app-row .app-badge {
+            .app-card .app-download-btn {
+                width: 100%;
                 justify-content: center;
+                padding: 8px;
             }
-            .app-download-section .app-links .app-row .app-name {
-                justify-content: center;
-            }
-            .app-download-section .app-links .app-row .app-name .app-label {
-                align-items: center;
+            .app-card .app-info .app-desc {
+                font-size: 10px;
             }
             .ios-message-section .msg-content .step {
                 font-size: 12px;
             }
             .ios-screenshot-wrapper {
                 padding: 6px;
-            }
-            .download-buttons-row {
-                flex-direction: column;
-            }
-            .download-now-btn {
-                font-size: 12px;
-                padding: 10px 14px;
             }
         }
     </style>
@@ -806,11 +717,7 @@
                 <span class="icon-small">📲</span>
                 <!-- سيتم تعبئتها بواسطة JavaScript حسب الجهاز -->
             </div>
-            <div class="app-links" id="appLinksContainer">
-                <!-- سيتم تعبئتها بواسطة JavaScript حسب الجهاز -->
-            </div>
-
-            <div class="download-buttons-row" id="downloadButtonsRow">
+            <div class="app-cards" id="appCardsContainer">
                 <!-- سيتم تعبئتها بواسطة JavaScript حسب الجهاز -->
             </div>
         </div>
@@ -972,121 +879,85 @@
 
         const device = getDeviceType();
 
-        // ===== عرض روابط التطبيقات حسب الجهاز =====
-        function renderAppLinks() {
-            const container = document.getElementById('appLinksContainer');
-            const buttonsRow = document.getElementById('downloadButtonsRow');
+        // ===== عرض بطاقات التطبيقات حسب الجهاز =====
+        function renderAppCards() {
+            const container = document.getElementById('appCardsContainer');
             const appTitle = document.getElementById('appTitle');
 
             if (device === 'ios') {
+                // iPhone: بطاقة واحدة فقط لـ VLC
                 appTitle.innerHTML = `
                     <span class="icon-small">📲</span>
                     قبل الضغط على القنوات يرجى تحميل "المشغل" التالي
                 `;
 
                 container.innerHTML = `
-                    <div class="app-row">
-                        <span class="app-name">
-                            <img src="${APP_ICONS.vlc}" alt="VLC" class="app-icon-img" />
-                            <span class="app-label">
-                                <span class="app-title-text">VLC Media Player</span>
-                                <span class="app-sub">مشغل فيديو متعدد الإمكانيات</span>
-                            </span>
-                        </span>
-                        <span class="app-badge">
-                            <a href="${APP_LINKS.vlc.ios}" target="_blank" class="badge-link ios">🍏 iPhone</a>
-                        </span>
+                    <div class="app-card">
+                        <img src="${APP_ICONS.vlc}" alt="VLC" class="app-icon" />
+                        <div class="app-info">
+                            <span class="app-name">VLC Media Player</span>
+                            <span class="app-desc">مشغل فيديو متعدد الإمكانيات</span>
+                        </div>
+                        <a href="${APP_LINKS.vlc.ios}" target="_blank" class="app-download-btn ios-btn">
+                            ⬇️ تنزيل
+                        </a>
                     </div>
-                `;
-
-                buttonsRow.innerHTML = `
-                    <a href="${APP_LINKS.vlc.ios}" target="_blank" class="download-now-btn ios-btn">
-                        <span class="btn-icon">⬇️</span>
-                        تنزيل VLC
-                        <span class="btn-arrow">→</span>
-                    </a>
                 `;
 
                 document.getElementById('iosMessageSection').classList.remove('visible');
                 document.getElementById('showIssueBtn').classList.add('visible');
 
             } else if (device === 'android') {
-                // العبارة المطلوبة للأندرويد
+                // Android: بطاقتان منفصلتان (VLC و MX)
                 appTitle.innerHTML = `
                     <span class="icon-small">📲</span>
                     قبل الضغط على القنوات يرجى تحميل أحد "المشغلين التاليين" أو "كلاهما"
                 `;
 
                 container.innerHTML = `
-                    <div class="app-row">
-                        <span class="app-name">
-                            <img src="${APP_ICONS.vlc}" alt="VLC" class="app-icon-img" />
-                            <span class="app-label">
-                                <span class="app-title-text">VLC Media Player</span>
-                                <span class="app-sub">مشغل فيديو متعدد الإمكانيات</span>
-                            </span>
-                        </span>
-                        <span class="app-badge">
-                            <a href="${APP_LINKS.vlc.android}" target="_blank" class="badge-link android">🤖 Android</a>
-                        </span>
+                    <div class="app-card">
+                        <img src="${APP_ICONS.vlc}" alt="VLC" class="app-icon" />
+                        <div class="app-info">
+                            <span class="app-name">VLC Media Player</span>
+                            <span class="app-desc">مشغل فيديو متعدد الإمكانيات</span>
+                        </div>
+                        <a href="${APP_LINKS.vlc.android}" target="_blank" class="app-download-btn android-btn">
+                            ⬇️ تنزيل
+                        </a>
                     </div>
-                    <div class="app-row">
-                        <span class="app-name">
-                            <img src="${APP_ICONS.mx}" alt="MX Player" class="app-icon-img" />
-                            <span class="app-label">
-                                <span class="app-title-text">MX Player</span>
-                                <span class="app-sub">مشغل فيديو احترافي</span>
-                            </span>
-                        </span>
-                        <span class="app-badge">
-                            <a href="${APP_LINKS.mx.android}" target="_blank" class="badge-link mx">🤖 Android</a>
-                        </span>
+                    <div class="app-card">
+                        <img src="${APP_ICONS.mx}" alt="MX Player" class="app-icon" />
+                        <div class="app-info">
+                            <span class="app-name">MX Player</span>
+                            <span class="app-desc">مشغل فيديو احترافي</span>
+                        </div>
+                        <a href="${APP_LINKS.mx.android}" target="_blank" class="app-download-btn mx-btn">
+                            ⬇️ تنزيل
+                        </a>
                     </div>
-                `;
-
-                buttonsRow.innerHTML = `
-                    <a href="${APP_LINKS.vlc.android}" target="_blank" class="download-now-btn android-btn">
-                        <span class="btn-icon">⬇️</span>
-                        تنزيل VLC
-                        <span class="btn-arrow">→</span>
-                    </a>
-                    <a href="${APP_LINKS.mx.android}" target="_blank" class="download-now-btn mx-btn">
-                        <span class="btn-icon">⬇️</span>
-                        تنزيل MX
-                        <span class="btn-arrow">→</span>
-                    </a>
                 `;
 
                 document.getElementById('showIssueBtn').classList.remove('visible');
                 document.getElementById('iosMessageSection').classList.remove('visible');
 
             } else {
+                // أجهزة أخرى
                 appTitle.innerHTML = `
                     <span class="icon-small">📲</span>
                     قبل الضغط على القنوات يرجى تحميل "المشغل" التالي
                 `;
 
                 container.innerHTML = `
-                    <div class="app-row">
-                        <span class="app-name">
-                            <img src="${APP_ICONS.vlc}" alt="VLC" class="app-icon-img" />
-                            <span class="app-label">
-                                <span class="app-title-text">VLC Media Player</span>
-                                <span class="app-sub">مشغل فيديو متعدد الإمكانيات</span>
-                            </span>
-                        </span>
-                        <span class="app-badge">
-                            <a href="${APP_LINKS.vlc.android}" target="_blank" class="badge-link android">📲 تحميل</a>
-                        </span>
+                    <div class="app-card">
+                        <img src="${APP_ICONS.vlc}" alt="VLC" class="app-icon" />
+                        <div class="app-info">
+                            <span class="app-name">VLC Media Player</span>
+                            <span class="app-desc">مشغل فيديو متعدد الإمكانيات</span>
+                        </div>
+                        <a href="${APP_LINKS.vlc.android}" target="_blank" class="app-download-btn">
+                            ⬇️ تنزيل
+                        </a>
                     </div>
-                `;
-
-                buttonsRow.innerHTML = `
-                    <a href="${APP_LINKS.vlc.android}" target="_blank" class="download-now-btn">
-                        <span class="btn-icon">⬇️</span>
-                        تنزيل المشغل
-                        <span class="btn-arrow">→</span>
-                    </a>
                 `;
 
                 document.getElementById('showIssueBtn').classList.remove('visible');
@@ -1228,17 +1099,13 @@
 
         // ===== تحديث النص السفلي =====
         function updateNote() {
-            const note = document.getElementById('deviceNote');
             const subText = document.getElementById('subText');
 
             if (device === 'ios') {
-                note.innerHTML = '🍏 <strong>iPhone/iPad:</strong> اضغط على القناة وسيتم تشغيلها على <strong>VLC</strong>';
                 subText.textContent = 'اختر القناة للبدء';
             } else if (device === 'android') {
-                note.innerHTML = '🤖 <strong>Android:</strong> اضغط على القناة ثم اختر <strong>VLC</strong> أو <strong>MX Player</strong>';
                 subText.textContent = 'اختر القناة واختر المشغل';
             } else {
-                note.innerHTML = '💡 اضغط على القناة للبدء';
                 subText.textContent = 'اختر القناة للبدء';
             }
         }
@@ -1253,7 +1120,7 @@
         }
 
         // ===== التهيئة =====
-        renderAppLinks();
+        renderAppCards();
         renderChannels();
         updateNote();
 
