@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>📺 IPTV Player - قنوات مجلس معلمي سعيد بن العاص</title>
+    <title>📺 IPTV Player - قنوات بي إن</title>
     <style>
         /* ============================================================
            ROOT & RESET (WORLD CUP STYLE)
@@ -284,7 +284,7 @@
             background: var(--ios-message-bg);
             border: 1px solid var(--border-gold);
             border-radius: var(--radius-md);
-            padding: 14px 16px;
+            padding: 16px 18px;
             margin-bottom: 16px;
             text-align: right;
         }
@@ -294,27 +294,24 @@
         }
 
         .ios-message-section .msg-title {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
             color: var(--gold-light);
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             justify-content: center;
         }
 
         .ios-message-section .msg-title .icon-msg {
-            font-size: 18px;
+            font-size: 20px;
         }
 
         .ios-message-section .msg-content {
-            font-size: 12px;
+            font-size: 13px;
             color: var(--text-secondary);
-            line-height: 1.8;
-            padding: 8px 12px;
-            background: rgba(0, 0, 0, 0.15);
-            border-radius: var(--radius-sm);
+            line-height: 1.9;
         }
 
         .ios-message-section .msg-content .highlight {
@@ -331,45 +328,111 @@
             display: inline-block;
             background: var(--gold-gradient);
             color: #0a0e1a;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             text-align: center;
             font-weight: 800;
             font-size: 11px;
-            line-height: 20px;
-            margin-left: 8px;
+            line-height: 22px;
+            margin-left: 10px;
         }
 
         .ios-message-section .msg-content .step .highlight-btn {
             display: inline-block;
             background: var(--gold-glow);
             border: 1px solid var(--border-gold);
-            padding: 2px 12px;
+            padding: 2px 14px;
             border-radius: 20px;
             color: var(--gold-light);
             font-weight: 700;
+            font-size: 12px;
+        }
+
+        /* ===== صورة الشرح ===== */
+        .ios-screenshot-wrapper {
+            margin: 12px 0 8px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.20);
+            border-radius: var(--radius-sm);
+            padding: 10px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .ios-screenshot-wrapper .screenshot-label {
             font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .ios-screenshot-wrapper .screenshot-label .arrow-icon {
+            font-size: 16px;
+        }
+
+        .ios-screenshot-wrapper img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-gold);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.30);
+            display: block;
+        }
+
+        .ios-screenshot-wrapper .img-credit {
+            font-size: 9px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .ios-screenshot-wrapper .img-credit a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .ios-screenshot-wrapper .img-credit a:hover {
+            color: var(--gold-light);
         }
 
         .ios-message-section .msg-content .screenshot-note {
-            margin-top: 8px;
-            padding: 8px 12px;
+            margin-top: 10px;
+            padding: 10px 14px;
             background: rgba(255, 255, 255, 0.03);
             border-radius: var(--radius-sm);
             border: 1px dashed var(--border-gold);
-            font-size: 11px;
+            font-size: 12px;
             color: var(--text-secondary);
             text-align: center;
         }
 
-        .ios-message-section .msg-content .screenshot-note .img-placeholder {
-            display: inline-block;
-            background: rgba(0, 0, 0, 0.20);
-            padding: 4px 16px;
-            border-radius: 8px;
-            font-size: 16px;
-            margin: 4px 0;
+        .ios-message-section .msg-content .screenshot-note .highlight-play {
+            color: var(--gold-light);
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .ios-message-section .msg-content .screenshot-note .highlight-always {
+            color: var(--info);
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .ios-message-section .msg-content .final-note {
+            margin-top: 10px;
+            padding: 8px 14px;
+            background: var(--gold-glow);
+            border-radius: var(--radius-sm);
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-primary);
+            border: 1px solid var(--border-gold);
+        }
+
+        .ios-message-section .msg-content .final-note strong {
+            color: var(--gold-light);
         }
 
         /* ===== CHANNEL LIST ===== */
@@ -596,7 +659,10 @@
                 justify-content: center;
             }
             .ios-message-section .msg-content .step {
-                font-size: 11px;
+                font-size: 12px;
+            }
+            .ios-screenshot-wrapper {
+                padding: 6px;
             }
         }
     </style>
@@ -625,7 +691,7 @@
             </div>
         </div>
 
-        <!-- ===== رسالة خاصة لمستخدمي iPhone ===== -->
+        <!-- ===== رسالة خاصة لمستخدمي iPhone مع الصورة ===== -->
         <div class="ios-message-section" id="iosMessageSection">
             <div class="msg-title">
                 <span class="icon-msg">📱</span>
@@ -644,17 +710,33 @@
                     <span class="num">3</span>
                     أو اضغط على <span class="highlight">"Always Play URLs"</span> لتشغيل البث تلقائياً في المستقبل.
                 </span>
-                <div class="screenshot-note">
-                    <span class="img-placeholder">📸</span>
-                    <div style="margin-top:4px;font-size:10px;color:var(--text-muted);">
-                        ستظهر لك هذه الرسالة:
-                        <div style="background:rgba(0,0,0,0.20);padding:6px 10px;border-radius:8px;margin-top:4px;font-family:monospace;font-size:10px;color:var(--text-secondary);">
-                            "Would you like to download or play this URL?"
-                        </div>
-                        <div style="margin-top:4px;">
-                            👆 اضغط على <span style="color:var(--gold-light);font-weight:700;">Play</span> أو <span style="color:var(--gold-light);font-weight:700;">Always Play URLs</span>
-                        </div>
+
+                <!-- ===== صورة الشرح ===== -->
+                <div class="ios-screenshot-wrapper">
+                    <div class="screenshot-label">
+                        <span class="arrow-icon">👇</span>
+                        <span>الرسالة التي ستظهر لك</span>
                     </div>
+                    <a href="https://ibb.co/Pz3sY6yD" target="_blank">
+                        <img src="https://i.ibb.co/YTY4WLS0/IMG-4278.png" alt="شرح تشغيل البث على iPhone" border="0" loading="lazy" />
+                    </a>
+                    <div class="img-credit">
+                        <a href="https://imgbb.com/" target="_blank">📸 اضغط لتكبير الصورة</a>
+                    </div>
+                </div>
+
+                <div class="screenshot-note">
+                    📌 ستظهر لك هذه الرسالة:
+                    <div style="background:rgba(0,0,0,0.20);padding:8px 12px;border-radius:8px;margin-top:6px;font-family:monospace;font-size:11px;color:var(--text-secondary);direction:ltr;text-align:center;">
+                        "Would you like to download or play this URL?"
+                    </div>
+                    <div style="margin-top:6px;">
+                        👆 اضغط على <span class="highlight-play">"Play"</span> أو <span class="highlight-always">"Always Play URLs"</span>
+                    </div>
+                </div>
+
+                <div class="final-note">
+                    ✅ <strong>نصيحة:</strong> اضغط على <strong>"Always Play URLs"</strong> لتشغيل جميع البثوث تلقائياً في المستقبل دون الحاجة للضغط على Play في كل مرة.
                 </div>
             </div>
         </div>
@@ -740,7 +822,6 @@
             const hint = document.getElementById('appHint');
 
             if (device === 'ios') {
-                // عرض رابط VLC للايفون فقط
                 container.innerHTML = `
                     <div class="app-row">
                         <span class="app-name">
@@ -754,11 +835,10 @@
                 `;
                 hint.innerHTML = `<span class="emoji">💡</span> <strong>تنبيه:</strong> يجب تحميل <strong>VLC</strong> من متجر التطبيقات قبل تشغيل البث.`;
 
-                // إظهار رسالة تعليمات iPhone
+                // إظهار رسالة تعليمات iPhone مع الصورة
                 document.getElementById('iosMessageSection').classList.add('visible');
 
             } else if (device === 'android') {
-                // عرض روابط VLC و MX للاندرويد
                 container.innerHTML = `
                     <div class="app-row">
                         <span class="app-name">
@@ -780,12 +860,9 @@
                     </div>
                 `;
                 hint.innerHTML = `<span class="emoji">💡</span> <strong>تنبيه:</strong> يمكنك استخدام <strong>VLC</strong> أو <strong>MX Player</strong>. قم بتحميل أحدهما من متجر جوجل.`;
-
-                // إخفاء رسالة iPhone
                 document.getElementById('iosMessageSection').classList.remove('visible');
 
             } else {
-                // أجهزة أخرى
                 container.innerHTML = `
                     <div class="app-row">
                         <span class="app-name">
@@ -811,7 +888,6 @@
                 const channelDiv = document.createElement('div');
                 channelDiv.className = 'channel-item';
 
-                // اسم القناة
                 const nameDiv = document.createElement('div');
                 nameDiv.className = 'channel-name';
                 nameDiv.innerHTML = `
@@ -819,12 +895,10 @@
                     <span class="name-text">${channel.name}</span>
                 `;
 
-                // أزرار التشغيل
                 const buttonsDiv = document.createElement('div');
                 buttonsDiv.className = 'channel-buttons';
 
                 if (device === 'ios') {
-                    // زر VLC للآيفون فقط
                     const btnVLC = document.createElement('a');
                     btnVLC.href = `vlc://${channel.url}`;
                     btnVLC.className = 'btn-small btn-ios-small';
@@ -832,14 +906,12 @@
                     btnVLC.target = '_blank';
                     btnVLC.onclick = function(e) {
                         e.preventDefault();
-                        // محاولة فتح التطبيق
                         window.location.href = this.href;
                         showToast('📲 جاري فتح VLC... اضغط "Play" أو "Always Play URLs" عند ظهور الرسالة');
                     };
                     buttonsDiv.appendChild(btnVLC);
 
                 } else if (device === 'android') {
-                    // زر VLC للأندرويد
                     const btnVLC = document.createElement('a');
                     btnVLC.href = `intent://${channel.url.replace('http://', '')}#Intent;scheme=http;package=org.videolan.vlc;type=video/*;end`;
                     btnVLC.className = 'btn-small btn-vlc-small';
@@ -854,7 +926,6 @@
                     };
                     buttonsDiv.appendChild(btnVLC);
 
-                    // زر MX Player
                     const btnMX = document.createElement('a');
                     btnMX.href = `intent://${channel.url.replace('http://', '')}#Intent;scheme=http;package=com.mxtech.videoplayer.ad;type=video/*;end`;
                     btnMX.className = 'btn-small btn-mx-small';
@@ -870,7 +941,6 @@
                     buttonsDiv.appendChild(btnMX);
 
                 } else {
-                    // أجهزة أخرى - عرض روابط تحميل فقط
                     const btnDownload = document.createElement('a');
                     btnDownload.href = APP_LINKS.vlc.android;
                     btnDownload.target = '_blank';
@@ -924,7 +994,6 @@
         console.log('📺 IPTV Player - قنوات بي إن');
         console.log(`📡 تم تحميل ${channels.length} قناة`);
         console.log(`📱 الجهاز: ${device}`);
-        console.log('📲 روابط التطبيقات متاحة حسب الجهاز');
     </script>
 
 </body>
